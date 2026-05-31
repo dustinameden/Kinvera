@@ -7,7 +7,6 @@ import {
   Clock,
   DoorOpen,
   Home,
-  KeyRound,
   Leaf,
   LockKeyhole,
   Mail,
@@ -213,7 +212,7 @@ const accessOptions = [
     text: "Temporary access codes and scheduled visit windows."
   },
   {
-    icon: KeyRound,
+    icon: 
     title: "Lockbox",
     text: "Secure homeowner-controlled key access."
   },
@@ -283,9 +282,19 @@ function App() {
     <div className="site">
       <header className="topbar">
         <a className="brand" href="#top" aria-label="Kinvera homepage">
-          <span className="brandMark"><KeyRound size={21} /></span>
+          <img
+            src="/kinvera-logo.png"
+            alt="Kinvera"
+            style={{
+              height: "52px",
+              width: "52px",
+              borderRadius: "18px",
+              objectFit: "cover",
+              boxShadow: "0 12px 26px rgba(34, 51, 40, 0.22)"
+            }}
+          />
           <span>
-            <strong>Kinvera</strong>
+            <strong>KINVERA</strong>
             <small>Home, looked after.</small>
           </span>
         </a>
@@ -1273,9 +1282,18 @@ function App() {
       <footer className="footer">
         <div className="container footerInner">
           <a className="brand footerBrand" href="#top">
-            <span className="brandMark"><KeyRound size={18} /></span>
+            <img
+              src="/kinvera-logo.png"
+              alt="Kinvera"
+              style={{
+                height: "42px",
+                width: "42px",
+                borderRadius: "15px",
+                objectFit: "cover"
+              }}
+            />
             <span>
-              <strong>Kinvera</strong>
+              <strong>KINVERA</strong>
               <small>Home, looked after.</small>
             </span>
           </a>
