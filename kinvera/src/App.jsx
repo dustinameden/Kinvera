@@ -300,14 +300,14 @@ function App() {
         </a>
 
         <nav className="nav" aria-label="Main navigation">
-          <a href="#network">Join Network</a>
+          <a href="#homeowners">Homeowners</a>
           <a href="#services">Services</a>
           <a href="#security">Security</a>
           <a href="#earnings">Ways to Earn</a>
-          <a href="#providers">Providers</a>
+          <a href="#contact">Join</a>
         </nav>
 
-        <a className="headerCta" href="#contact">Join the Network</a>
+        <a className="headerCta" href="#contact">Get Early Access</a>
       </header>
 
       <main id="top">
@@ -320,19 +320,19 @@ function App() {
                 Trusted home care for homeowners, renters, and providers
               </div>
 
-              <h1>Join the Kinvera Network.</h1>
+              <h1>Never wonder what&apos;s happening at home again.</h1>
 
               <p>
-                Kinvera connects homeowners, renters, and local care providers through
-                trusted service, secure access, documented visits, and peace of mind.
+                Kinvera helps homeowners and renters get trusted care for their property,
+                while giving local providers a clear way to earn through verified, documented service.
               </p>
 
               <div className="heroActions">
-                <a className="btn primary" href="#network">
-                  Choose Your Path <ArrowRight size={18} />
+                <a className="btn primary" href="#contact">
+                  Get Early Access <ArrowRight size={18} />
                 </a>
-                <a className="btn secondary" href="#how">
-                  How It Works
+                <a className="btn secondary" href="#earnings">
+                  See Ways to Earn
                 </a>
               </div>
 
@@ -531,7 +531,111 @@ function App() {
             </div>
           </div>
         </section>
+        <section className="section">
+          <div className="container">
+            <div className="sectionHead center">
+              <span className="kicker">What customers need</span>
+              <h2>The real reason people use Kinvera.</h2>
+              <p>
+                Homeowners and renters are not just buying tasks. They are buying trust,
+                visibility, and confidence that their home is being cared for.
+              </p>
+            </div>
 
+            <div className="howGrid">
+              {homeownerNeeds.map((need, index) => (
+                <article className="howCard" key={need}>
+                  <div className="stepNumber">{index + 1}</div>
+                  <div className="iconBox"><CheckCircle2 size={24} /></div>
+                  <h3>{need}</h3>
+                  <p>Kinvera turns that need into a clear request, a trusted provider, and a documented result.</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+        <section id="services" className="section services">
+          <div className="container">
+            <div className="sectionHead">
+              <span className="kicker">Services</span>
+              <h2>Book the help your home needs most.</h2>
+              <p>
+                Home watch is the anchor. Cleaning, plant care, and trash support
+                become the natural first add-ons.
+              </p>
+            </div>
+
+            <div className="serviceGrid">
+              {services.map(({ icon: Icon, title, text }) => (
+                <article className="serviceCard" key={title}>
+                  <div className="iconBox"><Icon size={25} /></div>
+                  <h3>{title}</h3>
+                  <p>{text}</p>
+                </article>
+              ))}
+            </div>
+
+            <div className="futureServices">
+              <span>Future customer add-ons</span>
+              {futureServices.map(({ icon: Icon, title }) => (
+                <div key={title}><Icon size={17} /> {title}</div>
+              ))}
+            </div>
+          </div>
+        </section>
+        <section id="security" className="section security">
+          <div className="container securityGrid">
+            <div>
+              <span className="kicker">Security and access</span>
+              <h2>Trust comes before service.</h2>
+              <p>
+                Customers choose how providers enter the property. Every completed visit is logged,
+                documented, and reviewable so you never have to wonder what happened.
+              </p>
+
+              <div className="securityChecklist">
+                <div><CheckCircle2 size={19} /> Time logged</div>
+                <div><CheckCircle2 size={19} /> Provider assigned</div>
+                <div><CheckCircle2 size={19} /> Visit documented</div>
+                <div><CheckCircle2 size={19} /> Photo confirmation</div>
+              </div>
+            </div>
+
+            <div className="accessGrid">
+              {accessOptions.map(({ icon: Icon, title, text }) => (
+                <article className="accessCard" key={title}>
+                  <Icon size={25} />
+                  <h3>{title}</h3>
+                  <p>{text}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+        <section id="how" className="section">
+          <div className="container">
+            <div className="sectionHead center">
+              <span className="kicker">How it works</span>
+              <h2>A simple experience for customers. A structured system behind it.</h2>
+              <p>
+                Kinvera starts with a home profile, trusted access, and documented visits.
+                That foundation can support cleaning, home watch, plant care, trash support,
+                and future concierge services.
+              </p>
+            </div>
+
+            <div className="howGrid">
+              {howItWorks.map(({ icon: Icon, title, text }, index) => (
+                <article className="howCard" key={title}>
+                  <div className="stepNumber">{index + 1}</div>
+                  <div className="iconBox"><Icon size={24} /></div>
+                  <h3>{title}</h3>
+                  <p>{text}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
         <section id="network" className="section">
           <div className="container">
             <div className="sectionHead center">
@@ -583,12 +687,11 @@ function App() {
             </div>
           </div>
         </section>
-
         <section id="homeowners" className="statement">
           <div className="container statementGrid">
             <div>
               <span className="kicker">For homeowners and renters</span>
-              <h2>Home Members get a clearer way to care for their space.</h2>
+              <h2>Whether you are away for a weekend or managing a second home, Kinvera helps you know exactly what is happening at your property.</h2>
             </div>
             <p>
               Kinvera is built for people who want their home cared for without chasing
@@ -598,117 +701,6 @@ function App() {
             </p>
           </div>
         </section>
-
-        <section className="section">
-          <div className="container">
-            <div className="sectionHead center">
-              <span className="kicker">What customers need</span>
-              <h2>Start with the real homeowner questions.</h2>
-              <p>
-                The product should feel obvious because it is built around the moments
-                when people actually need help.
-              </p>
-            </div>
-
-            <div className="howGrid">
-              {homeownerNeeds.map((need, index) => (
-                <article className="howCard" key={need}>
-                  <div className="stepNumber">{index + 1}</div>
-                  <div className="iconBox"><CheckCircle2 size={24} /></div>
-                  <h3>{need}</h3>
-                  <p>Kinvera turns that need into a clear request, a trusted provider, and a documented result.</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="how" className="section">
-          <div className="container">
-            <div className="sectionHead center">
-              <span className="kicker">How it works</span>
-              <h2>A simple experience for customers. A structured system behind it.</h2>
-              <p>
-                Kinvera starts with a home profile, trusted access, and documented visits.
-                That foundation can support cleaning, home watch, plant care, trash support,
-                and future concierge services.
-              </p>
-            </div>
-
-            <div className="howGrid">
-              {howItWorks.map(({ icon: Icon, title, text }, index) => (
-                <article className="howCard" key={title}>
-                  <div className="stepNumber">{index + 1}</div>
-                  <div className="iconBox"><Icon size={24} /></div>
-                  <h3>{title}</h3>
-                  <p>{text}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="services" className="section services">
-          <div className="container">
-            <div className="sectionHead">
-              <span className="kicker">Services</span>
-              <h2>Book the help your home needs most.</h2>
-              <p>
-                Home watch is the anchor. Cleaning, plant care, and trash support
-                become the natural first add-ons.
-              </p>
-            </div>
-
-            <div className="serviceGrid">
-              {services.map(({ icon: Icon, title, text }) => (
-                <article className="serviceCard" key={title}>
-                  <div className="iconBox"><Icon size={25} /></div>
-                  <h3>{title}</h3>
-                  <p>{text}</p>
-                </article>
-              ))}
-            </div>
-
-            <div className="futureServices">
-              <span>Future customer add-ons</span>
-              {futureServices.map(({ icon: Icon, title }) => (
-                <div key={title}><Icon size={17} /> {title}</div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="security" className="section security">
-          <div className="container securityGrid">
-            <div>
-              <span className="kicker">Security and access</span>
-              <h2>Your home. Your access rules. Clear documentation every time.</h2>
-              <p>
-                Customers choose how providers enter the property. Every completed visit
-                should be logged, documented, and reviewable so the homeowner or renter
-                never has to wonder what happened.
-              </p>
-
-              <div className="securityChecklist">
-                <div><CheckCircle2 size={19} /> Time logged</div>
-                <div><CheckCircle2 size={19} /> Provider assigned</div>
-                <div><CheckCircle2 size={19} /> Visit documented</div>
-                <div><CheckCircle2 size={19} /> Photo confirmation</div>
-              </div>
-            </div>
-
-            <div className="accessGrid">
-              {accessOptions.map(({ icon: Icon, title, text }) => (
-                <article className="accessCard" key={title}>
-                  <Icon size={25} />
-                  <h3>{title}</h3>
-                  <p>{text}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
         <section className="section packages">
           <div className="container">
             <div className="sectionHead center">
@@ -736,7 +728,6 @@ function App() {
             </div>
           </div>
         </section>
-
         <section id="earnings" className="section earnings">
           <div className="container">
             <div className="sectionHead center">
@@ -1164,35 +1155,14 @@ function App() {
             </div>
           </div>
         </section>
-
-        <section id="locations" className="section locations">
-          <div className="container">
-            <div className="sectionHead">
-              <span className="kicker light">Launch markets</span>
-              <h2>Built for the places people live, rent, vacation, and leave behind.</h2>
-            </div>
-
-            <div className="marketGrid">
-              {markets.map((market) => (
-                <article className="marketCard" key={market.city}>
-                  <MapPin size={25} />
-                  <h3>{market.city}</h3>
-                  <strong>{market.label}</strong>
-                  <p>{market.text}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
         <section id="providers" className="section providers">
           <div className="container providerGrid">
             <div>
               <span className="kicker">For future Kinvera care providers</span>
-              <h2>Join a customer-first home care network.</h2>
+              <h2>Earn by becoming someone homeowners can trust.</h2>
               <p>
                 Kinvera is for cleaners, home watchers, organizers, plant specialists,
-                concierge providers, and property care professionals who want consistent work,
+                concierge providers, and property care professionals who want flexible work,
                 clear expectations, visible demand, review-driven reputation, and a trusted brand behind them.
               </p>
               <a className="btn primary" href="#contact">
@@ -1218,16 +1188,34 @@ function App() {
             </div>
           </div>
         </section>
+        <section id="locations" className="section locations">
+          <div className="container">
+            <div className="sectionHead">
+              <span className="kicker light">Launch markets</span>
+              <h2>Now accepting early Home Members and Care Providers.</h2>
+            </div>
 
+            <div className="marketGrid">
+              {markets.map((market) => (
+                <article className="marketCard" key={market.city}>
+                  <MapPin size={25} />
+                  <h3>{market.city}</h3>
+                  <strong>{market.label}</strong>
+                  <p>{market.text}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
         <section id="contact" className="section contact">
           <div className="container contactCard">
             <div>
-              <span className="kicker light">Join the network</span>
-              <h2>Tell us which side of Kinvera you are joining.</h2>
+              <span className="kicker light">Get early access</span>
+              <h2>Join the Kinvera Network.</h2>
               <p>
                 Home Members join to request trusted care for their property.
                 Care Providers join to deliver that care through Kinvera.
-                Both sides help shape the future network.
+                Early members and providers will help shape the network before launch.
               </p>
             </div>
 
