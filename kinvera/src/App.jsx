@@ -344,14 +344,14 @@ function App() {
         </a>
 
         <nav className="nav" aria-label="Main navigation">
-          <a href="#membership">Membership</a>
+          <a href="#support">Support Plans</a>
           <a href="#services">Services</a>
           <a href="#security">Security</a>
           <a href="#earnings">Ways to Earn</a>
           <a href="#contact">Join</a>
         </nav>
 
-        <a className="headerCta" href="#contact">Get Early Access</a>
+        <a className="headerCta" href="#contact">Request Support</a>
       </header>
 
       <main id="top">
@@ -372,8 +372,8 @@ function App() {
               </p>
 
               <div className="heroActions">
-                <a className="btn primary" href="#network">
-                  Choose Your Path <ArrowRight size={18} />
+                <a className="btn primary" href="#support">
+                  Pick Your Support Level <ArrowRight size={18} />
                 </a>
                 <a className="btn secondary" href="#how">
                   How It Works
@@ -579,22 +579,22 @@ function App() {
         <section id="network" className="section">
           <div className="container">
             <div className="sectionHead center">
-              <span className="kicker">Choose your path</span>
-              <h2>One network. Two ways to join.</h2>
+              <span className="kicker">Start here</span>
+              <h2>Pick the level of support you need.</h2>
               <p>
-                Kinvera works because both sides of the network are built around trust:
-                members who need reliable property care and providers who want to deliver it.
+                Whether you need a one-time check, recurring help, or want to provide care,
+                Kinvera keeps the first step simple.
               </p>
             </div>
 
             <div className="packageGrid">
               <article className="packageCard featured">
                 <div className="badge">For people who need care</div>
-                <span className="packageEyebrow">I need help with my home</span>
-                <h3>Explore Membership</h3>
+                <span className="packageEyebrow">I need support for my place</span>
+                <h3>Request Property Support</h3>
                 <p>
                   For renters, homeowners, travelers, second-home owners, and anyone who wants
-                  trusted help and documented peace of mind.
+                  trusted help, simple scheduling, and documented peace of mind.
                 </p>
                 <ul>
                   <li><CheckCircle2 size={18} /> Home watch visits</li>
@@ -602,8 +602,8 @@ function App() {
                   <li><CheckCircle2 size={18} /> Plant care, mail, trash, lawn, and snow support</li>
                   <li><CheckCircle2 size={18} /> Secure access and photo reports</li>
                 </ul>
-                <a className="btn primary full" href="#membership">
-                  See Member Benefits
+                <a className="btn primary full" href="#quick-request">
+                  Request Support
                 </a>
               </article>
 
@@ -620,25 +620,82 @@ function App() {
                   <li><CheckCircle2 size={18} /> Follow clear service standards</li>
                   <li><CheckCircle2 size={18} /> Build reputation over time</li>
                 </ul>
-                <a className="btn secondary full" href="#earnings">
-                  See Ways to Earn
+                <a className="btn secondary full" href="#provider-request">
+                  Become a Provider
                 </a>
               </article>
             </div>
           </div>
         </section>
 
-        <section id="membership" className="statement">
+        <section id="support" className="statement">
           <div className="container statementGrid">
             <div>
-              <span className="kicker">Membership</span>
-              <h2>For people who are not always home.</h2>
+              <span className="kicker">Support levels</span>
+              <h2>Choose the amount of care your place needs.</h2>
             </div>
             <p>
               Whether you rent, own, travel frequently, or manage a second property,
               Kinvera helps you stay connected to your space through trusted local help,
               secure access, photo reports, and clear documentation.
             </p>
+          </div>
+        </section>
+
+        <section id="quick-request" className="section">
+          <div className="container">
+            <div className="sectionHead center">
+              <span className="kicker">Request support</span>
+              <h2>Tell us what kind of help you need.</h2>
+              <p>
+                Start with a simple request. You do not need to know the exact package yet.
+              </p>
+            </div>
+
+            <div className="packageGrid">
+              <article className="packageCard">
+                <span className="packageEyebrow">Occasional</span>
+                <h3>Check My Place</h3>
+                <p>For travel, second homes, packages, plants, storm checks, and peace of mind.</p>
+                <ul>
+                  <li><CheckCircle2 size={18} /> Home watch visit</li>
+                  <li><CheckCircle2 size={18} /> Photo report</li>
+                  <li><CheckCircle2 size={18} /> Access logged</li>
+                </ul>
+                <a className="btn secondary full" href="#contact">
+                  Request a Check
+                </a>
+              </article>
+
+              <article className="packageCard featured">
+                <div className="badge">Most flexible</div>
+                <span className="packageEyebrow">Recurring</span>
+                <h3>Keep It Cared For</h3>
+                <p>For regular cleaning, plants, trash, mail, lawn care, snow removal, and ongoing support.</p>
+                <ul>
+                  <li><CheckCircle2 size={18} /> Recurring support</li>
+                  <li><CheckCircle2 size={18} /> Multiple service types</li>
+                  <li><CheckCircle2 size={18} /> Documented visits</li>
+                </ul>
+                <a className="btn primary full" href="#contact">
+                  Start a Request
+                </a>
+              </article>
+
+              <article className="packageCard">
+                <span className="packageEyebrow">Away</span>
+                <h3>Watch While I&apos;m Away</h3>
+                <p>For frequent travelers, snowbirds, vacation properties, and extended absences.</p>
+                <ul>
+                  <li><CheckCircle2 size={18} /> Scheduled checks</li>
+                  <li><CheckCircle2 size={18} /> Storm or issue monitoring</li>
+                  <li><CheckCircle2 size={18} /> Priority updates</li>
+                </ul>
+                <a className="btn secondary full" href="#contact">
+                  Plan Away Care
+                </a>
+              </article>
+            </div>
           </div>
         </section>
 
@@ -754,27 +811,47 @@ function App() {
         <section className="section packages">
           <div className="container">
             <div className="sectionHead center">
-              <span className="kicker">Simple ways to start</span>
-              <h2>Pick the level of support that fits your space.</h2>
+              <span className="kicker">What you are paying for</span>
+              <h2>Not just a task. Proof that your place was cared for.</h2>
+              <p>
+                Kinvera is designed to make home care feel visible, accountable, and worth it.
+              </p>
             </div>
 
             <div className="packageGrid">
-              {packages.map((pkg) => (
-                <article className={pkg.featured ? "packageCard featured" : "packageCard"} key={pkg.name}>
-                  {pkg.featured && <div className="badge">Best starting point</div>}
-                  <span className="packageEyebrow">{pkg.eyebrow}</span>
-                  <h3>{pkg.name}</h3>
-                  <p>{pkg.text}</p>
-                  <ul>
-                    {pkg.items.map((item) => (
-                      <li key={item}><CheckCircle2 size={18} /> {item}</li>
-                    ))}
-                  </ul>
-                  <a className={pkg.featured ? "btn primary full" : "btn secondary full"} href="#contact">
-                    Request early access
-                  </a>
-                </article>
-              ))}
+              <article className="packageCard">
+                <span className="packageEyebrow">Visibility</span>
+                <h3>Photo Reports</h3>
+                <p>See what was checked, completed, and documented after every visit.</p>
+                <ul>
+                  <li><CheckCircle2 size={18} /> Photos uploaded</li>
+                  <li><CheckCircle2 size={18} /> Checklist completed</li>
+                  <li><CheckCircle2 size={18} /> Time logged</li>
+                </ul>
+              </article>
+
+              <article className="packageCard featured">
+                <div className="badge">Core value</div>
+                <span className="packageEyebrow">Trust</span>
+                <h3>Verified Local Care</h3>
+                <p>Know who is providing care, when they arrived, and what they completed.</p>
+                <ul>
+                  <li><CheckCircle2 size={18} /> Provider assigned</li>
+                  <li><CheckCircle2 size={18} /> Access documented</li>
+                  <li><CheckCircle2 size={18} /> Review history</li>
+                </ul>
+              </article>
+
+              <article className="packageCard">
+                <span className="packageEyebrow">Peace of mind</span>
+                <h3>Early Issue Detection</h3>
+                <p>Small issues are easier to fix when someone catches them early.</p>
+                <ul>
+                  <li><CheckCircle2 size={18} /> Leaks checked</li>
+                  <li><CheckCircle2 size={18} /> Storm checks</li>
+                  <li><CheckCircle2 size={18} /> Security confirmation</li>
+                </ul>
+              </article>
             </div>
           </div>
         </section>
@@ -1207,6 +1284,67 @@ function App() {
           </div>
         </section>
 
+        <section id="provider-request" className="section">
+          <div className="container">
+            <div className="contactCard">
+              <div>
+                <span className="kicker light">Provider interest</span>
+                <h2>Want to provide care through Kinvera?</h2>
+                <p>
+                  Tell us your market, skills, and availability. This is the first step toward joining
+                  the Kinvera provider network.
+                </p>
+              </div>
+
+              <form className="leadForm" name="kinvera-provider-interest" method="POST" data-netlify="true">
+                <input type="hidden" name="form-name" value="kinvera-provider-interest" />
+                <input type="hidden" name="interest" value="provider" />
+
+                <label>
+                  Skills
+                  <select name="skills" defaultValue="home-watch">
+                    <option value="home-watch">Home Watch</option>
+                    <option value="cleaning">Cleaning</option>
+                    <option value="plant-care">Plant Care</option>
+                    <option value="trash">Trash & Recycling</option>
+                    <option value="lawn-snow">Lawn Care / Snow Removal</option>
+                    <option value="multiple">Multiple Skills</option>
+                  </select>
+                </label>
+
+                <label>
+                  Availability
+                  <select name="availability" defaultValue="part-time">
+                    <option value="few-hours">A few hours per week</option>
+                    <option value="part-time">Part-time</option>
+                    <option value="weekends">Weekends</option>
+                    <option value="flexible">Flexible</option>
+                  </select>
+                </label>
+
+                <label>
+                  Name
+                  <input name="name" type="text" placeholder="Your name" required />
+                </label>
+
+                <label>
+                  Email
+                  <input name="email" type="email" placeholder="you@example.com" required />
+                </label>
+
+                <label className="wide">
+                  Tell us about your experience
+                  <textarea name="message" rows="4" placeholder="Example: I clean homes part-time and can also do plant care and trash support." />
+                </label>
+
+                <button className="btn formBtn full" type="submit">
+                  Apply as a Care Provider
+                </button>
+              </form>
+            </div>
+          </div>
+        </section>
+
         <section id="providers" className="section providers">
           <div className="container providerGrid">
             <div>
@@ -1267,12 +1405,11 @@ function App() {
         <section id="contact" className="section contact">
           <div className="container contactCard">
             <div>
-              <span className="kicker light">Get early access</span>
-              <h2>Join the Kinvera Network.</h2>
+              <span className="kicker light">Simple signup</span>
+              <h2>Tell us what you need.</h2>
               <p>
-                Members join to request trusted care for their property.
-                Care Providers join to deliver that care through Kinvera.
-                Early members and providers will help shape the network before launch.
+                Start with the basics. We will use this to understand demand, launch markets,
+                and which services should go live first.
               </p>
             </div>
 
@@ -1282,8 +1419,8 @@ function App() {
               <label>
                 I am interested in
                 <select name="interest" defaultValue="member">
-                  <option value="member">Joining as a Member</option>
-                  <option value="provider">Joining as a Care Provider</option>
+                  <option value="member">I need support for my place</option>
+                  <option value="provider">I want to provide care</option>
                   <option value="both">Both</option>
                 </select>
               </label>
@@ -1317,7 +1454,7 @@ function App() {
               </label>
 
               <button className="btn formBtn full" type="submit">
-                Join the Kinvera Network
+                Submit Interest
               </button>
             </form>
           </div>
