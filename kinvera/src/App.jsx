@@ -1,6 +1,5 @@
 import {
   ArrowRight,
-  BadgeCheck,
   Camera,
   Car,
   CheckCircle2,
@@ -26,31 +25,39 @@ import {
 const howItWorks = [
   {
     icon: Home,
-    title: "Create your home profile",
-    text: "Add the property, access preferences, emergency contacts, pets, plants, and the services you want."
+    title: "Tell us about your home",
+    text: "Add your location, property type, access preferences, pets, plants, and the services you need."
   },
   {
     icon: UserCheck,
-    title: "Get matched locally",
-    text: "Kinvera connects your home with a trusted local care provider who fits your market and needs."
+    title: "We match the right provider",
+    text: "Kinvera connects your home with a trusted local care provider based on service needs, market, and availability."
   },
   {
     icon: Camera,
-    title: "Receive visit reports",
-    text: "After every visit, you receive photos, notes, timestamps, and a simple checklist of what was completed."
+    title: "You get a visit report",
+    text: "Every completed visit includes notes, timestamps, checklists, and photos so you know exactly what happened."
   },
   {
     icon: ShieldCheck,
-    title: "Know everything is handled",
-    text: "Whether you are across town or across the world, your home has someone looking after it."
+    title: "You stay confident",
+    text: "Whether you are at work, traveling, or managing a second home, your property is being looked after."
   }
+];
+
+const homeownerNeeds = [
+  "I need my home checked while I am away.",
+  "I need cleaning or turnover support.",
+  "I need plants watered, mail collected, or trash handled.",
+  "I need someone trustworthy to access my home.",
+  "I need proof that everything was completed."
 ];
 
 const services = [
   {
     icon: Home,
     title: "Home Watch",
-    text: "Scheduled property checks, security confirmation, leak detection, temperature checks, and photo reports."
+    text: "Scheduled property checks, security confirmation, leak detection, temperature checks, mail collection, and photo reports."
   },
   {
     icon: Sparkles,
@@ -60,7 +67,7 @@ const services = [
   {
     icon: Leaf,
     title: "Plant Care",
-    text: "Watering, plant health checks, care notes, and vacation plant support."
+    text: "Watering, basic plant health checks, care notes, and vacation plant support."
   },
   {
     icon: Trash2,
@@ -72,20 +79,20 @@ const services = [
 const futureServices = [
   { icon: Wifi, title: "Tech Support" },
   { icon: Car, title: "Car Care" },
-  { icon: Paintbrush, title: "Interior Design" },
+  { icon: Paintbrush, title: "Interior Refresh" },
   { icon: Wrench, title: "Contractor Access" }
 ];
 
 const markets = [
   {
     city: "Washington, DC",
-    label: "Busy primary residences",
-    text: "Support for professionals, travelers, condo owners, townhomes, and recurring household care."
+    label: "Busy homes and apartments",
+    text: "Support for renters, homeowners, professionals, travelers, condos, apartments, and townhomes."
   },
   {
     city: "Pittsburgh",
-    label: "Family homes and recurring care",
-    text: "Reliable cleaning, trash support, home checks, seasonal needs, and household coordination."
+    label: "Everyday home support",
+    text: "Reliable cleaning, trash support, home checks, seasonal help, and household coordination."
   },
   {
     city: "Rehoboth Beach",
@@ -95,7 +102,7 @@ const markets = [
   {
     city: "Puerto Vallarta",
     label: "Remote property confidence",
-    text: "Home care visibility for vacation owners, snowbirds, expats, and international travelers."
+    text: "Home care visibility for vacation owners, renters, snowbirds, expats, and international travelers."
   }
 ];
 
@@ -103,7 +110,7 @@ const accessOptions = [
   {
     icon: LockKeyhole,
     title: "Smart lock",
-    text: "Temporary access codes and scheduled windows."
+    text: "Temporary access codes and scheduled visit windows."
   },
   {
     icon: KeyRound,
@@ -126,20 +133,20 @@ const packages = [
   {
     name: "Kinvera Check",
     eyebrow: "Peace of mind",
-    text: "A documented home walkthrough when you are away.",
+    text: "A documented walkthrough when you are away.",
     items: ["Interior/exterior check", "Doors and windows verified", "Mail/packages collected", "Photo report sent"]
   },
   {
     name: "Kinvera Care",
     eyebrow: "Most popular",
-    text: "Ongoing support for the home tasks that pile up.",
+    text: "Ongoing help with the home tasks that pile up.",
     items: ["Cleaning support", "Plant care", "Trash support", "Service notes"],
     featured: true
   },
   {
     name: "Kinvera Away",
     eyebrow: "Travel coverage",
-    text: "Recurring home care while you are out of town.",
+    text: "Recurring care while you are out of town.",
     items: ["Scheduled inspections", "Storm or issue checks", "Mail, plants, trash", "Priority alerts"]
   }
 ];
@@ -157,13 +164,13 @@ function App() {
         </a>
 
         <nav className="nav" aria-label="Main navigation">
-          <a href="#homeowners">Homeowners</a>
-          <a href="#security">Security</a>
+          <a href="#homeowners">Homeowners & Renters</a>
           <a href="#services">Services</a>
-          <a href="#providers">Providers</a>
+          <a href="#security">Security</a>
+          <a href="#providers">Care Providers</a>
         </nav>
 
-        <a className="headerCta" href="#contact">Request Access</a>
+        <a className="headerCta" href="#contact">Get Started</a>
       </header>
 
       <main id="top">
@@ -173,22 +180,22 @@ function App() {
             <div className="heroCopy">
               <div className="pill">
                 <ShieldCheck size={16} />
-                Trusted home care in DC, Pittsburgh, Rehoboth & Puerto Vallarta
+                Trusted home care for homeowners, renters, and travelers
               </div>
 
-              <h1>Never wonder what&apos;s happening at home again.</h1>
+              <h1>Know your home is handled.</h1>
 
               <p>
-                Kinvera gives homeowners a trusted second set of hands for home watch,
+                Kinvera gives homeowners and renters a trusted way to book home watch,
                 cleaning, plant care, trash support, secure access, and documented visit reports.
               </p>
 
               <div className="heroActions">
                 <a className="btn primary" href="#contact">
-                  Care for My Home <ArrowRight size={18} />
+                  Request Home Care <ArrowRight size={18} />
                 </a>
-                <a className="btn secondary" href="#providers">
-                  Join the Network
+                <a className="btn secondary" href="#contact">
+                  Join as a Customer
                 </a>
               </div>
 
@@ -264,14 +271,39 @@ function App() {
         <section id="homeowners" className="statement">
           <div className="container statementGrid">
             <div>
-              <span className="kicker">For homeowners</span>
-              <h2>One trusted relationship for everything your home needs.</h2>
+              <span className="kicker">For homeowners and renters</span>
+              <h2>One simple place to request trusted help for your home.</h2>
             </div>
             <p>
-              Cleaning companies clean. Property managers manage rentals. Neighbors help when they can.
-              Kinvera is different: a trusted home care network built around the actual anxiety homeowners have —
-              “Is everything okay at the house?”
+              Kinvera is built for people who want their home cared for without chasing
+              different vendors, texting neighbors, or wondering whether something was done.
+              Whether you own, rent, travel often, or manage a second home, Kinvera gives you
+              a clearer way to get help and receive proof that the work was completed.
             </p>
+          </div>
+        </section>
+
+        <section className="section">
+          <div className="container">
+            <div className="sectionHead center">
+              <span className="kicker">What customers need</span>
+              <h2>Start with the real homeowner questions.</h2>
+              <p>
+                The product should feel obvious because it is built around the moments
+                when people actually need help.
+              </p>
+            </div>
+
+            <div className="howGrid">
+              {homeownerNeeds.map((need, index) => (
+                <article className="howCard" key={need}>
+                  <div className="stepNumber">{index + 1}</div>
+                  <div className="iconBox"><CheckCircle2 size={24} /></div>
+                  <h3>{need}</h3>
+                  <p>Kinvera turns that need into a clear request, a trusted provider, and a documented result.</p>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -279,10 +311,11 @@ function App() {
           <div className="container">
             <div className="sectionHead center">
               <span className="kicker">How it works</span>
-              <h2>Simple for homeowners. Structured behind the scenes.</h2>
+              <h2>A simple experience for customers. A structured system behind it.</h2>
               <p>
                 Kinvera starts with a home profile, trusted access, and documented visits.
-                That foundation can support cleaning, home watch, plant care, trash support, and future concierge services.
+                That foundation can support cleaning, home watch, plant care, trash support,
+                and future concierge services.
               </p>
             </div>
 
@@ -299,14 +332,45 @@ function App() {
           </div>
         </section>
 
+        <section id="services" className="section services">
+          <div className="container">
+            <div className="sectionHead">
+              <span className="kicker">Services</span>
+              <h2>Book the help your home needs most.</h2>
+              <p>
+                Home watch is the anchor. Cleaning, plant care, and trash support
+                become the natural first add-ons.
+              </p>
+            </div>
+
+            <div className="serviceGrid">
+              {services.map(({ icon: Icon, title, text }) => (
+                <article className="serviceCard" key={title}>
+                  <div className="iconBox"><Icon size={25} /></div>
+                  <h3>{title}</h3>
+                  <p>{text}</p>
+                </article>
+              ))}
+            </div>
+
+            <div className="futureServices">
+              <span>Future customer add-ons</span>
+              {futureServices.map(({ icon: Icon, title }) => (
+                <div key={title}><Icon size={17} /> {title}</div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section id="security" className="section security">
           <div className="container securityGrid">
             <div>
-              <span className="kicker">Your keys. Your rules.</span>
-              <h2>Access is the hardest part. Kinvera makes it the clearest part.</h2>
+              <span className="kicker">Security and access</span>
+              <h2>Your home. Your access rules. Clear documentation every time.</h2>
               <p>
-                Every home has an access plan. Customers choose how providers enter the property,
-                and every completed visit is logged, documented, and reviewable.
+                Customers choose how providers enter the property. Every completed visit
+                should be logged, documented, and reviewable so the homeowner or renter
+                never has to wonder what happened.
               </p>
 
               <div className="securityChecklist">
@@ -329,40 +393,11 @@ function App() {
           </div>
         </section>
 
-        <section id="services" className="section services">
-          <div className="container">
-            <div className="sectionHead">
-              <span className="kicker">Core services</span>
-              <h2>Start with what homeowners already need.</h2>
-              <p>
-                Home watch is the anchor. Cleaning, plant care, and trash support become the natural first add-ons.
-              </p>
-            </div>
-
-            <div className="serviceGrid">
-              {services.map(({ icon: Icon, title, text }) => (
-                <article className="serviceCard" key={title}>
-                  <div className="iconBox"><Icon size={25} /></div>
-                  <h3>{title}</h3>
-                  <p>{text}</p>
-                </article>
-              ))}
-            </div>
-
-            <div className="futureServices">
-              <span>Future concierge add-ons</span>
-              {futureServices.map(({ icon: Icon, title }) => (
-                <div key={title}><Icon size={17} /> {title}</div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         <section className="section packages">
           <div className="container">
             <div className="sectionHead center">
               <span className="kicker">Simple ways to start</span>
-              <h2>Three packages. One clear promise.</h2>
+              <h2>Pick the level of support that fits your home.</h2>
             </div>
 
             <div className="packageGrid">
@@ -390,7 +425,7 @@ function App() {
           <div className="container">
             <div className="sectionHead">
               <span className="kicker light">Launch markets</span>
-              <h2>Built for the places people live, vacation, and leave behind.</h2>
+              <h2>Built for the places people live, rent, vacation, and leave behind.</h2>
             </div>
 
             <div className="marketGrid">
@@ -409,15 +444,15 @@ function App() {
         <section id="providers" className="section providers">
           <div className="container providerGrid">
             <div>
-              <span className="kicker">For care providers</span>
-              <h2>Join a trusted network built around better home service.</h2>
+              <span className="kicker">For future Kinvera care providers</span>
+              <h2>Join a customer-first home care network.</h2>
               <p>
                 Kinvera is for cleaners, home watchers, organizers, plant specialists,
-                concierge providers, and property care professionals who want consistent work
-                through a trusted brand.
+                concierge providers, and property care professionals who want consistent work,
+                clear expectations, and a trusted brand behind them.
               </p>
               <a className="btn primary" href="#contact">
-                Join the Network <ChevronRight size={18} />
+                Work With Kinvera <ChevronRight size={18} />
               </a>
             </div>
 
@@ -443,10 +478,11 @@ function App() {
         <section id="contact" className="section contact">
           <div className="container contactCard">
             <div>
-              <span className="kicker light">Early access</span>
-              <h2>Help shape Kinvera&apos;s first launch.</h2>
+              <span className="kicker light">Get started</span>
+              <h2>Tell us what you need help with.</h2>
               <p>
-                Start with one home, one service, and one trusted visit. Early customers and care providers
+                Join the Kinvera network as a customer to request trusted home care,
+                or apply to work with Kinvera as a care provider. Early customers and providers
                 will help shape packages, pricing, training, and the future Kinvera app.
               </p>
             </div>
@@ -457,8 +493,8 @@ function App() {
               <label>
                 I am interested in
                 <select name="interest" defaultValue="home">
-                  <option value="home">Care for my home</option>
-                  <option value="provider">Joining as a care provider</option>
+                  <option value="home">Joining as a customer</option>
+                  <option value="provider">Working with Kinvera as a care provider</option>
                   <option value="both">Both</option>
                 </select>
               </label>
@@ -492,7 +528,7 @@ function App() {
               </label>
 
               <button className="btn formBtn full" type="submit">
-                Request early access
+                Submit request
               </button>
             </form>
           </div>
