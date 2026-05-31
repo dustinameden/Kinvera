@@ -7,6 +7,7 @@ import {
   Clock,
   DoorOpen,
   Home,
+  KeyRound,
   Leaf,
   LockKeyhole,
   Mail,
@@ -212,7 +213,7 @@ const accessOptions = [
     text: "Temporary access codes and scheduled visit windows."
   },
   {
-    icon: 
+    icon: KeyRound,
     title: "Lockbox",
     text: "Secure homeowner-controlled key access."
   },
