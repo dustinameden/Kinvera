@@ -287,11 +287,41 @@ const earningSkills = [
 ];
 
 const reputationMultipliers = {
-  1: { label: "New Provider", multiplier: 1, tipBoost: 40, repeatBoost: 0 },
-  2: { label: "Building Trust", multiplier: 1.08, tipBoost: 75, repeatBoost: 80 },
-  3: { label: "Reliable Provider", multiplier: 1.18, tipBoost: 120, repeatBoost: 180 },
-  4: { label: "Strong Reviews", multiplier: 1.32, tipBoost: 180, repeatBoost: 320 },
-  5: { label: "Top Provider", multiplier: 1.52, tipBoost: 260, repeatBoost: 520 }
+  1: {
+    label: "New Provider",
+    multiplier: 1,
+    tipBoost: 40,
+    repeatBoost: 0,
+    description: "Start with base opportunities while building your first reviews."
+  },
+  2: {
+    label: "Building Reputation",
+    multiplier: 1.08,
+    tipBoost: 75,
+    repeatBoost: 80,
+    description: "A few successful visits begin increasing confidence and repeat requests."
+  },
+  3: {
+    label: "Reliable Provider",
+    multiplier: 1.18,
+    tipBoost: 120,
+    repeatBoost: 180,
+    description: "Consistent service can lead to stronger tips and more repeat members."
+  },
+  4: {
+    label: "Trusted Provider",
+    multiplier: 1.32,
+    tipBoost: 180,
+    repeatBoost: 320,
+    description: "Strong reviews should unlock better matching and more frequent requests."
+  },
+  5: {
+    label: "Top Provider",
+    multiplier: 1.52,
+    tipBoost: 260,
+    repeatBoost: 520,
+    description: "Top providers should earn more through priority demand, tips, and repeat work."
+  }
 };
 
 function App() {
@@ -1182,13 +1212,12 @@ function App() {
                   }}
                 >
                   <h4 style={{ margin: "0 0 12px", color: "#f6dfaa", fontSize: "20px" }}>
-                    Review influence
+                    Reputation level
                   </h4>
 
                   <div
                     style={{
                       display: "grid",
-                      gridTemplateColumns: "repeat(5, 1fr)",
                       gap: "8px",
                       marginBottom: "14px"
                     }}
@@ -1199,27 +1228,48 @@ function App() {
                         key={score}
                         onClick={() => setReputation(score)}
                         style={{
-                          padding: "10px 0",
+                          display: "grid",
+                          gridTemplateColumns: "120px 1fr auto",
+                          alignItems: "center",
+                          gap: "12px",
+                          width: "100%",
+                          padding: "11px 12px",
                           border: reputation === score ? "2px solid #f6dfaa" : "1px solid rgba(244, 239, 230, 0.18)",
-                          borderRadius: "14px",
+                          borderRadius: "16px",
                           background: reputation === score ? "rgba(246, 223, 170, 0.14)" : "rgba(255,255,255,0.06)",
-                          color: "#f6dfaa",
+                          color: "#fbfaf7",
                           cursor: "pointer",
-                          fontSize: "18px",
-                          fontWeight: 950
+                          fontWeight: 900,
+                          textAlign: "left"
                         }}
                       >
-                        ★
+                        <span style={{ color: "#f6dfaa", letterSpacing: "0.05em" }}>
+                          {"★".repeat(score)}
+                          <span style={{ color: "rgba(246,223,170,0.28)" }}>
+                            {"★".repeat(5 - score)}
+                          </span>
+                        </span>
+
+                        <span style={{ fontSize: "14px" }}>
+                          {reputationMultipliers[score].label}
+                        </span>
+
+                        <span style={{ color: "#f6dfaa", fontSize: "13px", whiteSpace: "nowrap" }}>
+                          +{Math.round((reputationMultipliers[score].multiplier - 1) * 100)}%
+                        </span>
                       </button>
                     ))}
                   </div>
 
-                  <div style={{ color: "#fbfaf7", fontWeight: 950 }}>
-                    {reputationModel.label}
+                  <div style={{ color: "#fbfaf7", fontWeight: 950, fontSize: "18px" }}>
+                    {"★".repeat(reputation)}
+                    <span style={{ color: "rgba(246,223,170,0.28)" }}>
+                      {"★".repeat(5 - reputation)}
+                    </span>
+                    <span style={{ marginLeft: "10px" }}>{reputationModel.label}</span>
                   </div>
-                  <p style={{ margin: "6px 0 0", color: "#ddd8ce", fontSize: "15px", lineHeight: 1.55 }}>
-                    Better reviews should lead to more requests, repeat members, stronger tips,
-                    and higher earning potential.
+                  <p style={{ margin: "8px 0 0", color: "#ddd8ce", fontSize: "15px", lineHeight: 1.55 }}>
+                    {reputationModel.description}
                   </p>
                 </div>
 
