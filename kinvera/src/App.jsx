@@ -7,7 +7,6 @@ import {
   Clock,
   DoorOpen,
   Home,
-  KeyRound,
   Leaf,
   LockKeyhole,
   Mail,
@@ -15,6 +14,7 @@ import {
   Paintbrush,
   ShieldCheck,
   Sparkles,
+  Snowflake,
   Star,
   Thermometer,
   Trash2,
@@ -23,16 +23,24 @@ import {
   Wrench
 } from "lucide-react";
 
+const memberNeeds = [
+  "I need my place checked while I am away.",
+  "I need cleaning or turnover support.",
+  "I need plants watered, mail collected, trash handled, or seasonal upkeep.",
+  "I need someone trustworthy to access my home.",
+  "I need proof that everything was completed."
+];
+
 const howItWorks = [
   {
     icon: Home,
-    title: "Tell us about your home",
+    title: "Tell us about your place",
     text: "Add your location, property type, access preferences, pets, plants, and the services you need."
   },
   {
     icon: UserCheck,
     title: "We match the right provider",
-    text: "Kinvera connects your home with a trusted local care provider based on service needs, market, and availability."
+    text: "Kinvera connects your request with a trusted local care provider based on service needs, market, and availability."
   },
   {
     icon: Camera,
@@ -44,14 +52,6 @@ const howItWorks = [
     title: "You stay confident",
     text: "Whether you are at work, traveling, or managing a second home, your property is being looked after."
   }
-];
-
-const homeownerNeeds = [
-  "I need my home checked while I am away.",
-  "I need cleaning or turnover support.",
-  "I need plants watered, mail collected, or trash handled.",
-  "I need someone trustworthy to access my home.",
-  "I need proof that everything was completed."
 ];
 
 const services = [
@@ -74,13 +74,92 @@ const services = [
     icon: Trash2,
     title: "Trash & Recycling",
     text: "Bin pull-out, bin return, trash day reminders, and light household removal support."
+  },
+  {
+    icon: Leaf,
+    title: "Lawn Care",
+    text: "Grass cutting, light yard maintenance, and seasonal outdoor upkeep for homes and rentals."
+  },
+  {
+    icon: Snowflake,
+    title: "Snow Removal",
+    text: "Walkway, steps, driveway, and entry clearing after winter weather."
   }
 ];
 
 const futureServices = [
   { icon: Wifi, title: "Tech Support" },
   { icon: Paintbrush, title: "Interior Refresh" },
-  { icon: Wrench, title: "Contractor Access" }
+  { icon: Wrench, title: "Contractor Access" },
+  { icon: Mail, title: "Package Management" }
+];
+
+const markets = [
+  {
+    city: "Washington, DC",
+    label: "Busy homes and apartments",
+    text: "Support for renters, homeowners, professionals, travelers, condos, apartments, and townhomes."
+  },
+  {
+    city: "Pittsburgh",
+    label: "Everyday home support",
+    text: "Reliable cleaning, trash support, home checks, seasonal help, and household coordination."
+  },
+  {
+    city: "Rehoboth Beach",
+    label: "Vacation home monitoring",
+    text: "Second-home inspections, turnover cleaning, storm checks, package collection, and owner updates."
+  },
+  {
+    city: "Puerto Vallarta",
+    label: "Remote property confidence",
+    text: "Home care visibility for vacation owners, renters, snowbirds, expats, and international travelers."
+  }
+];
+
+const accessOptions = [
+  {
+    icon: LockKeyhole,
+    title: "Smart lock",
+    text: "Temporary access codes and scheduled visit windows."
+  },
+  {
+    icon: ShieldCheck,
+    title: "Lockbox",
+    text: "Secure customer-controlled key access."
+  },
+  {
+    icon: DoorOpen,
+    title: "Owner or renter present",
+    text: "Meet your provider at the property."
+  },
+  {
+    icon: ShieldCheck,
+    title: "Kinvera Vault",
+    text: "Future secure key custody and checkout logs."
+  }
+];
+
+const packages = [
+  {
+    name: "Kinvera Check",
+    eyebrow: "Peace of mind",
+    text: "A documented walkthrough when you are away.",
+    items: ["Interior/exterior check", "Doors and windows verified", "Mail/packages collected", "Photo report sent"]
+  },
+  {
+    name: "Kinvera Care",
+    eyebrow: "Most popular",
+    text: "Ongoing help with the home tasks that pile up.",
+    items: ["Cleaning support", "Plant care", "Trash support", "Service notes"],
+    featured: true
+  },
+  {
+    name: "Kinvera Away",
+    eyebrow: "Travel coverage",
+    text: "Recurring care while you are out of town.",
+    items: ["Scheduled inspections", "Storm or issue checks", "Mail, plants, trash", "Priority alerts"]
+  }
 ];
 
 const providerSkills = [
@@ -107,6 +186,18 @@ const providerSkills = [
     demand: "High",
     pay: "$10–$25 / task",
     upside: "Simple recurring work with strong neighborhood density potential."
+  },
+  {
+    skill: "Lawn Care",
+    demand: "Seasonal",
+    pay: "$30–$75 / visit",
+    upside: "Strong spring and summer demand for members who need regular outdoor upkeep."
+  },
+  {
+    skill: "Snow Removal",
+    demand: "Seasonal",
+    pay: "$25–$80 / visit",
+    upside: "High urgency winter work, especially for steps, walkways, driveways, and rental properties."
   },
   {
     skill: "Pet Visits",
@@ -164,6 +255,26 @@ const earningSkills = [
     description: "Bin pull-out, bin return, and trash day support."
   },
   {
+    id: "lawnCare",
+    title: "Lawn Care",
+    icon: Leaf,
+    demand: 4,
+    rate: 45,
+    unit: "visit",
+    weeklyUnitsAt10Hours: 2,
+    description: "Grass cutting and light seasonal outdoor upkeep."
+  },
+  {
+    id: "snowRemoval",
+    title: "Snow Removal",
+    icon: Snowflake,
+    demand: 5,
+    rate: 50,
+    unit: "visit",
+    weeklyUnitsAt10Hours: 2,
+    description: "Walkway, steps, driveway, and entry clearing after winter weather."
+  },
+  {
     id: "petVisits",
     title: "Pet Visits",
     icon: ShieldCheck,
@@ -182,74 +293,6 @@ const reputationMultipliers = {
   4: { label: "Strong Reviews", multiplier: 1.32, tipBoost: 180, repeatBoost: 320 },
   5: { label: "Top Provider", multiplier: 1.52, tipBoost: 260, repeatBoost: 520 }
 };
-
-const markets = [
-  {
-    city: "Washington, DC",
-    label: "Busy homes and apartments",
-    text: "Support for renters, homeowners, professionals, travelers, condos, apartments, and townhomes."
-  },
-  {
-    city: "Pittsburgh",
-    label: "Everyday home support",
-    text: "Reliable cleaning, trash support, home checks, seasonal help, and household coordination."
-  },
-  {
-    city: "Rehoboth Beach",
-    label: "Vacation home monitoring",
-    text: "Second-home inspections, turnover cleaning, storm checks, package collection, and owner updates."
-  },
-  {
-    city: "Puerto Vallarta",
-    label: "Remote property confidence",
-    text: "Home care visibility for vacation owners, renters, snowbirds, expats, and international travelers."
-  }
-];
-
-const accessOptions = [
-  {
-    icon: LockKeyhole,
-    title: "Smart lock",
-    text: "Temporary access codes and scheduled visit windows."
-  },
-  {
-    icon: KeyRound,
-    title: "Lockbox",
-    text: "Secure homeowner-controlled key access."
-  },
-  {
-    icon: DoorOpen,
-    title: "Owner present",
-    text: "Meet your provider at the property."
-  },
-  {
-    icon: ShieldCheck,
-    title: "Kinvera Vault",
-    text: "Future secure key custody and checkout logs."
-  }
-];
-
-const packages = [
-  {
-    name: "Kinvera Check",
-    eyebrow: "Peace of mind",
-    text: "A documented walkthrough when you are away.",
-    items: ["Interior/exterior check", "Doors and windows verified", "Mail/packages collected", "Photo report sent"]
-  },
-  {
-    name: "Kinvera Care",
-    eyebrow: "Most popular",
-    text: "Ongoing help with the home tasks that pile up.",
-    items: ["Cleaning support", "Plant care", "Trash support", "Service notes"],
-    featured: true
-  },
-  {
-    name: "Kinvera Away",
-    eyebrow: "Travel coverage",
-    text: "Recurring care while you are out of town.",
-    items: ["Scheduled inspections", "Storm or issue checks", "Mail, plants, trash", "Priority alerts"]
-  }
-];
 
 function App() {
   const [selectedSkills, setSelectedSkills] = useState(["homeWatch", "plantCare", "trash"]);
@@ -301,7 +344,7 @@ function App() {
         </a>
 
         <nav className="nav" aria-label="Main navigation">
-          <a href="#homeowners">Homeowners</a>
+          <a href="#membership">Membership</a>
           <a href="#services">Services</a>
           <a href="#security">Security</a>
           <a href="#earnings">Ways to Earn</a>
@@ -318,22 +361,22 @@ function App() {
             <div className="heroCopy">
               <div className="pill">
                 <ShieldCheck size={16} />
-                Trusted home care for homeowners, renters, and providers
+                Trusted care for people who are not always home
               </div>
 
               <h1>Never wonder what&apos;s happening at home again.</h1>
 
               <p>
-                Kinvera helps homeowners and renters get trusted care for their property,
-                while giving local providers a clear way to earn through verified, documented service.
+                Kinvera helps members get trusted care for their property, while giving local
+                providers a clear way to earn through verified, documented service.
               </p>
 
               <div className="heroActions">
-                <a className="btn primary" href="#contact">
-                  Get Early Access <ArrowRight size={18} />
+                <a className="btn primary" href="#network">
+                  Choose Your Path <ArrowRight size={18} />
                 </a>
-                <a className="btn secondary" href="#earnings">
-                  See Ways to Earn
+                <a className="btn secondary" href="#how">
+                  How It Works
                 </a>
               </div>
 
@@ -487,7 +530,7 @@ function App() {
                     "Mail collected",
                     "Plants watered",
                     "No visible leaks",
-                    "Owner notified"
+                    "Member notified"
                   ].map((item) => (
                     <div className="check" key={item}>
                       <CheckCircle2 size={19} />
@@ -532,19 +575,86 @@ function App() {
             </div>
           </div>
         </section>
+
+        <section id="network" className="section">
+          <div className="container">
+            <div className="sectionHead center">
+              <span className="kicker">Choose your path</span>
+              <h2>One network. Two ways to join.</h2>
+              <p>
+                Kinvera works because both sides of the network are built around trust:
+                members who need reliable property care and providers who want to deliver it.
+              </p>
+            </div>
+
+            <div className="packageGrid">
+              <article className="packageCard featured">
+                <div className="badge">For people who need care</div>
+                <span className="packageEyebrow">I need help with my home</span>
+                <h3>Explore Membership</h3>
+                <p>
+                  For renters, homeowners, travelers, second-home owners, and anyone who wants
+                  trusted help and documented peace of mind.
+                </p>
+                <ul>
+                  <li><CheckCircle2 size={18} /> Home watch visits</li>
+                  <li><CheckCircle2 size={18} /> Cleaning and turnover support</li>
+                  <li><CheckCircle2 size={18} /> Plant care, mail, trash, lawn, and snow support</li>
+                  <li><CheckCircle2 size={18} /> Secure access and photo reports</li>
+                </ul>
+                <a className="btn primary full" href="#membership">
+                  See Member Benefits
+                </a>
+              </article>
+
+              <article className="packageCard">
+                <span className="packageEyebrow">I want to provide care</span>
+                <h3>Become a Provider</h3>
+                <p>
+                  For cleaners, home watchers, organizers, plant specialists, lawn/snow helpers,
+                  and service professionals who want consistent work through Kinvera.
+                </p>
+                <ul>
+                  <li><CheckCircle2 size={18} /> Join a trusted local network</li>
+                  <li><CheckCircle2 size={18} /> Get matched with member requests</li>
+                  <li><CheckCircle2 size={18} /> Follow clear service standards</li>
+                  <li><CheckCircle2 size={18} /> Build reputation over time</li>
+                </ul>
+                <a className="btn secondary full" href="#earnings">
+                  See Ways to Earn
+                </a>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="membership" className="statement">
+          <div className="container statementGrid">
+            <div>
+              <span className="kicker">Membership</span>
+              <h2>For people who are not always home.</h2>
+            </div>
+            <p>
+              Whether you rent, own, travel frequently, or manage a second property,
+              Kinvera helps you stay connected to your space through trusted local help,
+              secure access, photo reports, and clear documentation.
+            </p>
+          </div>
+        </section>
+
         <section className="section">
           <div className="container">
             <div className="sectionHead center">
-              <span className="kicker">What customers need</span>
+              <span className="kicker">Why members use Kinvera</span>
               <h2>The real reason people use Kinvera.</h2>
               <p>
-                Homeowners and renters are not just buying tasks. They are buying trust,
-                visibility, and confidence that their home is being cared for.
+                Members are not just buying tasks. They are buying trust, visibility,
+                and confidence that their home is being cared for.
               </p>
             </div>
 
             <div className="howGrid">
-              {homeownerNeeds.map((need, index) => (
+              {memberNeeds.map((need, index) => (
                 <article className="howCard" key={need}>
                   <div className="stepNumber">{index + 1}</div>
                   <div className="iconBox"><CheckCircle2 size={24} /></div>
@@ -555,14 +665,15 @@ function App() {
             </div>
           </div>
         </section>
+
         <section id="services" className="section services">
           <div className="container">
             <div className="sectionHead">
               <span className="kicker">Services</span>
-              <h2>Book the help your home needs most.</h2>
+              <h2>Book the help your place needs most.</h2>
               <p>
-                Home watch is the anchor. Cleaning, plant care, and trash support
-                become the natural first add-ons.
+                Home watch is the anchor. Cleaning, plant care, trash support,
+                lawn care, and snow removal become natural first add-ons.
               </p>
             </div>
 
@@ -577,20 +688,21 @@ function App() {
             </div>
 
             <div className="futureServices">
-              <span>Future customer add-ons</span>
+              <span>Future member add-ons</span>
               {futureServices.map(({ icon: Icon, title }) => (
                 <div key={title}><Icon size={17} /> {title}</div>
               ))}
             </div>
           </div>
         </section>
+
         <section id="security" className="section security">
           <div className="container securityGrid">
             <div>
               <span className="kicker">Security and access</span>
               <h2>Trust comes before service.</h2>
               <p>
-                Customers choose how providers enter the property. Every completed visit is logged,
+                Members choose how providers enter the property. Every completed visit is logged,
                 documented, and reviewable so you never have to wonder what happened.
               </p>
 
@@ -613,14 +725,15 @@ function App() {
             </div>
           </div>
         </section>
+
         <section id="how" className="section">
           <div className="container">
             <div className="sectionHead center">
               <span className="kicker">How it works</span>
-              <h2>A simple experience for customers. A structured system behind it.</h2>
+              <h2>A simple experience for members. A structured system behind it.</h2>
               <p>
-                Kinvera starts with a home profile, trusted access, and documented visits.
-                That foundation can support cleaning, home watch, plant care, trash support,
+                Kinvera starts with a property profile, trusted access, and documented visits.
+                That foundation supports home watch, cleaning, plant care, trash support,
                 and future concierge services.
               </p>
             </div>
@@ -637,76 +750,12 @@ function App() {
             </div>
           </div>
         </section>
-        <section id="network" className="section">
-          <div className="container">
-            <div className="sectionHead center">
-              <span className="kicker">Choose your path</span>
-              <h2>One network. Two ways to join.</h2>
-              <p>
-                Kinvera works because both sides of the network are built around trust:
-                customers who need reliable home care and providers who want to deliver it.
-              </p>
-            </div>
 
-            <div className="packageGrid">
-              <article className="packageCard featured">
-                <div className="badge">For homeowners & renters</div>
-                <span className="packageEyebrow">I need help with my home</span>
-                <h3>Join as a Home Member</h3>
-                <p>
-                  For homeowners, renters, travelers, and second-home owners who want
-                  trusted help and documented peace of mind.
-                </p>
-                <ul>
-                  <li><CheckCircle2 size={18} /> Home watch visits</li>
-                  <li><CheckCircle2 size={18} /> Cleaning and turnover support</li>
-                  <li><CheckCircle2 size={18} /> Plant care, mail, and trash support</li>
-                  <li><CheckCircle2 size={18} /> Secure access and photo reports</li>
-                </ul>
-                <a className="btn primary full" href="#contact">
-                  Join as a Home Member
-                </a>
-              </article>
-
-              <article className="packageCard">
-                <span className="packageEyebrow">I want to provide care</span>
-                <h3>Join as a Care Provider</h3>
-                <p>
-                  For cleaners, home watchers, organizers, plant specialists, and
-                  service professionals who want consistent work through Kinvera.
-                </p>
-                <ul>
-                  <li><CheckCircle2 size={18} /> Join a trusted local network</li>
-                  <li><CheckCircle2 size={18} /> Get matched with customer requests</li>
-                  <li><CheckCircle2 size={18} /> Follow clear service standards</li>
-                  <li><CheckCircle2 size={18} /> Build reputation over time</li>
-                </ul>
-                <a className="btn secondary full" href="#providers">
-                  Become a Care Provider
-                </a>
-              </article>
-            </div>
-          </div>
-        </section>
-        <section id="homeowners" className="statement">
-          <div className="container statementGrid">
-            <div>
-              <span className="kicker">For homeowners and renters</span>
-              <h2>Whether you are away for a weekend or managing a second home, Kinvera helps you know exactly what is happening at your property.</h2>
-            </div>
-            <p>
-              Kinvera is built for people who want their home cared for without chasing
-              different vendors, texting neighbors, or wondering whether something was done.
-              Whether you own, rent, travel often, or manage a second home, the network gives
-              you a trusted way to request help and receive proof that the work was completed.
-            </p>
-          </div>
-        </section>
         <section className="section packages">
           <div className="container">
             <div className="sectionHead center">
               <span className="kicker">Simple ways to start</span>
-              <h2>Pick the level of support that fits your home.</h2>
+              <h2>Pick the level of support that fits your space.</h2>
             </div>
 
             <div className="packageGrid">
@@ -729,6 +778,7 @@ function App() {
             </div>
           </div>
         </section>
+
         <section id="earnings" className="section earnings">
           <div className="container">
             <div className="sectionHead center">
@@ -736,7 +786,7 @@ function App() {
               <h2>Could Kinvera fit into your life?</h2>
               <p>
                 Choose the services you would enjoy doing, set your weekly availability,
-                and see how reviews, tips, and repeat customers can influence earning potential.
+                and see how reviews, tips, and repeat members can influence earning potential.
               </p>
             </div>
 
@@ -865,7 +915,7 @@ function App() {
                             {"🔥".repeat(demand)}
                           </span>
                           <strong style={{ color: "#223328" }}>
-                            ${rate} / {unit}
+                            Provider earns ~${rate} / {unit}
                           </strong>
                         </div>
                       </button>
@@ -973,7 +1023,7 @@ function App() {
                   boxShadow: "0 24px 80px rgba(24, 21, 18, 0.14)"
                 }}
               >
-                <span className="kicker light">Your potential</span>
+                <span className="kicker light">For care providers</span>
                 <h3
                   style={{
                     margin: "0 0 8px",
@@ -986,8 +1036,8 @@ function App() {
                   ${projectedMonthlyEarnings.toLocaleString()}
                 </h3>
                 <p style={{ color: "#ddd8ce", lineHeight: 1.65, marginBottom: "24px" }}>
-                  Estimated monthly earnings based on selected services, part-time availability,
-                  and your provider reputation.
+                  Estimated monthly provider income based on selected services, part-time availability,
+                  and provider reputation.
                 </p>
 
                 <div
@@ -1041,7 +1091,7 @@ function App() {
                       fontWeight: 850
                     }}
                   >
-                    <span>Repeat-customer upside</span>
+                    <span>Repeat-member upside</span>
                     <strong>+${estimatedRepeatBoost.toLocaleString()}</strong>
                   </div>
                 </div>
@@ -1156,14 +1206,15 @@ function App() {
             </div>
           </div>
         </section>
+
         <section id="providers" className="section providers">
           <div className="container providerGrid">
             <div>
-              <span className="kicker">For future Kinvera care providers</span>
-              <h2>Earn by becoming someone homeowners can trust.</h2>
+              <span className="kicker">For care providers</span>
+              <h2>Earn by becoming someone members can trust.</h2>
               <p>
                 Kinvera is for cleaners, home watchers, organizers, plant specialists,
-                concierge providers, and property care professionals who want flexible work,
+                lawn/snow helpers, concierge providers, and property care professionals who want flexible work,
                 clear expectations, visible demand, review-driven reputation, and a trusted brand behind them.
               </p>
               <a className="btn primary" href="#contact">
@@ -1189,11 +1240,12 @@ function App() {
             </div>
           </div>
         </section>
+
         <section id="locations" className="section locations">
           <div className="container">
             <div className="sectionHead">
               <span className="kicker light">Launch markets</span>
-              <h2>Now accepting early Home Members and Care Providers.</h2>
+              <h2>Now accepting early members and care providers.</h2>
             </div>
 
             <div className="marketGrid">
@@ -1203,18 +1255,22 @@ function App() {
                   <h3>{market.city}</h3>
                   <strong>{market.label}</strong>
                   <p>{market.text}</p>
+                  <p style={{ color: "#f6dfaa", fontWeight: 900, marginTop: "18px" }}>
+                    Now accepting members and providers
+                  </p>
                 </article>
               ))}
             </div>
           </div>
         </section>
+
         <section id="contact" className="section contact">
           <div className="container contactCard">
             <div>
               <span className="kicker light">Get early access</span>
               <h2>Join the Kinvera Network.</h2>
               <p>
-                Home Members join to request trusted care for their property.
+                Members join to request trusted care for their property.
                 Care Providers join to deliver that care through Kinvera.
                 Early members and providers will help shape the network before launch.
               </p>
@@ -1225,8 +1281,8 @@ function App() {
 
               <label>
                 I am interested in
-                <select name="interest" defaultValue="home">
-                  <option value="home">Joining as a Home Member</option>
+                <select name="interest" defaultValue="member">
+                  <option value="member">Joining as a Member</option>
                   <option value="provider">Joining as a Care Provider</option>
                   <option value="both">Both</option>
                 </select>
@@ -1252,7 +1308,7 @@ function App() {
               </label>
 
               <label className="wide">
-                What do you need?
+                What do you need or provide?
                 <textarea
                   name="message"
                   rows="4"
