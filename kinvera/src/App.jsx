@@ -1,3 +1,4 @@
+import { useMemo, useState } from "react";
 import {
   ArrowRight,
   Camera,
@@ -121,6 +122,67 @@ const providerSkills = [
   }
 ];
 
+const earningSkills = [
+  {
+    id: "homeWatch",
+    title: "Home Watch",
+    icon: Home,
+    demand: 5,
+    rate: 35,
+    unit: "visit",
+    weeklyUnitsAt10Hours: 5,
+    description: "Property checks, doors, leaks, mail, and photo reports."
+  },
+  {
+    id: "plantCare",
+    title: "Plant Care",
+    icon: Leaf,
+    demand: 3,
+    rate: 20,
+    unit: "visit",
+    weeklyUnitsAt10Hours: 3,
+    description: "Watering, plant checks, and vacation support."
+  },
+  {
+    id: "cleaning",
+    title: "Cleaning",
+    icon: Sparkles,
+    demand: 4,
+    rate: 120,
+    unit: "job",
+    weeklyUnitsAt10Hours: 1,
+    description: "Routine cleaning, deep cleaning, and turnover support."
+  },
+  {
+    id: "trash",
+    title: "Trash Support",
+    icon: Trash2,
+    demand: 4,
+    rate: 15,
+    unit: "task",
+    weeklyUnitsAt10Hours: 4,
+    description: "Bin pull-out, bin return, and trash day support."
+  },
+  {
+    id: "petVisits",
+    title: "Pet Visits",
+    icon: ShieldCheck,
+    demand: 3,
+    rate: 25,
+    unit: "visit",
+    weeklyUnitsAt10Hours: 4,
+    description: "Future add-on for members who travel frequently."
+  }
+];
+
+const reputationMultipliers = {
+  1: { label: "New Provider", multiplier: 1, tipBoost: 40, repeatBoost: 0 },
+  2: { label: "Building Trust", multiplier: 1.08, tipBoost: 75, repeatBoost: 80 },
+  3: { label: "Reliable Provider", multiplier: 1.18, tipBoost: 120, repeatBoost: 180 },
+  4: { label: "Strong Reviews", multiplier: 1.32, tipBoost: 180, repeatBoost: 320 },
+  5: { label: "Top Provider", multiplier: 1.52, tipBoost: 260, repeatBoost: 520 }
+};
+
 const markets = [
   {
     city: "Washington, DC",
@@ -190,6 +252,33 @@ const packages = [
 ];
 
 function App() {
+  const [selectedSkills, setSelectedSkills] = useState(["homeWatch", "plantCare", "trash"]);
+  const [hoursPerWeek, setHoursPerWeek] = useState(10);
+  const [reputation, setReputation] = useState(3);
+
+  const selectedEarningSkills = earningSkills.filter((skill) => selectedSkills.includes(skill.id));
+  const reputationModel = reputationMultipliers[reputation];
+
+  const baseMonthlyEarnings = useMemo(() => {
+    return selectedEarningSkills.reduce((total, skill) => {
+      const weeklyUnits = skill.weeklyUnitsAt10Hours * (hoursPerWeek / 10);
+      return total + weeklyUnits * skill.rate * 4;
+    }, 0);
+  }, [selectedEarningSkills, hoursPerWeek]);
+
+  const projectedMonthlyEarnings = Math.round(baseMonthlyEarnings * reputationModel.multiplier);
+  const topProviderPotential = Math.round(baseMonthlyEarnings * reputationMultipliers[5].multiplier);
+  const estimatedTips = reputationModel.tipBoost;
+  const estimatedRepeatBoost = reputationModel.repeatBoost;
+
+  const toggleSkill = (skillId) => {
+    setSelectedSkills((current) =>
+      current.includes(skillId)
+        ? current.filter((id) => id !== skillId)
+        : [...current, skillId]
+    );
+  };
+
   return (
     <div className="site">
       <header className="topbar">
@@ -643,98 +732,406 @@ function App() {
           <div className="container">
             <div className="sectionHead center">
               <span className="kicker">Ways to earn</span>
-              <h2>See what you could earn with Kinvera.</h2>
+              <h2>Could Kinvera fit into your life?</h2>
               <p>
-                Care Providers can select the skills they offer, understand demand by service,
-                and see how part-time availability could turn into meaningful monthly income.
+                Choose the services you would enjoy doing, set your weekly availability,
+                and see how reviews, tips, and repeat customers can influence earning potential.
               </p>
             </div>
 
-            <div className="earningsGrid">
-              <div className="earningsPanel">
-                <h3>What skills do you have?</h3>
-
-                <div className="skillList">
-                  <label>
-                    <input type="checkbox" defaultChecked />
-                    <span>Home Watch</span>
-                    <strong>$35 avg / visit</strong>
-                  </label>
-
-                  <label>
-                    <input type="checkbox" defaultChecked />
-                    <span>Plant Care</span>
-                    <strong>$20 avg / visit</strong>
-                  </label>
-
-                  <label>
-                    <input type="checkbox" />
-                    <span>Cleaning</span>
-                    <strong>$120 avg / job</strong>
-                  </label>
-
-                  <label>
-                    <input type="checkbox" defaultChecked />
-                    <span>Trash Service</span>
-                    <strong>$15 avg / task</strong>
-                  </label>
-
-                  <label>
-                    <input type="checkbox" />
-                    <span>Pet Visits</span>
-                    <strong>$25 avg / visit</strong>
-                  </label>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1.05fr 0.95fr",
+                gap: "24px",
+                alignItems: "stretch"
+              }}
+            >
+              <div
+                style={{
+                  padding: "30px",
+                  border: "1px solid #e7dfd5",
+                  borderRadius: "36px",
+                  background: "#ffffff",
+                  boxShadow: "0 12px 34px rgba(24, 21, 18, 0.055)"
+                }}
+              >
+                <div style={{ marginBottom: "24px" }}>
+                  <span className="kicker">Select services</span>
+                  <h3
+                    style={{
+                      margin: "0 0 10px",
+                      fontSize: "34px",
+                      lineHeight: 1,
+                      letterSpacing: "-0.055em"
+                    }}
+                  >
+                    What would you enjoy doing?
+                  </h3>
+                  <p style={{ margin: 0, color: "#655f58", lineHeight: 1.65 }}>
+                    Pick the skills you already have or services you would be willing to learn.
+                  </p>
                 </div>
 
-                <div className="fieldGroup">
-                  <label>Hours available per week</label>
-                  <select defaultValue="10">
-                    <option value="5">5 hours / week</option>
-                    <option value="10">10 hours / week</option>
-                    <option value="15">15 hours / week</option>
-                    <option value="20">20 hours / week</option>
-                  </select>
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+                    gap: "12px",
+                    marginBottom: "26px"
+                  }}
+                >
+                  {earningSkills.map(({ id, title, icon: Icon, demand, rate, unit, description }) => {
+                    const isSelected = selectedSkills.includes(id);
+
+                    return (
+                      <button
+                        type="button"
+                        key={id}
+                        onClick={() => toggleSkill(id)}
+                        style={{
+                          textAlign: "left",
+                          padding: "18px",
+                          border: isSelected ? "2px solid #223328" : "1px solid #e7dfd5",
+                          borderRadius: "24px",
+                          background: isSelected ? "#f4efe6" : "#fbfaf7",
+                          cursor: "pointer",
+                          boxShadow: isSelected ? "0 14px 28px rgba(34, 51, 40, 0.12)" : "none"
+                        }}
+                      >
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                            gap: "12px",
+                            alignItems: "flex-start",
+                            marginBottom: "18px"
+                          }}
+                        >
+                          <div
+                            style={{
+                              display: "grid",
+                              placeItems: "center",
+                              width: "48px",
+                              height: "48px",
+                              borderRadius: "18px",
+                              color: "#223328",
+                              background: "#ffffff"
+                            }}
+                          >
+                            <Icon size={23} />
+                          </div>
+
+                          <div
+                            style={{
+                              display: "inline-flex",
+                              alignItems: "center",
+                              gap: "6px",
+                              color: isSelected ? "#223328" : "#91877d",
+                              fontWeight: 950
+                            }}
+                          >
+                            {isSelected ? <CheckCircle2 size={18} /> : null}
+                            {isSelected ? "Selected" : "Add"}
+                          </div>
+                        </div>
+
+                        <h4
+                          style={{
+                            margin: "0 0 7px",
+                            fontSize: "21px",
+                            letterSpacing: "-0.04em"
+                          }}
+                        >
+                          {title}
+                        </h4>
+
+                        <p style={{ margin: "0 0 14px", color: "#655f58", lineHeight: 1.45, fontSize: "14px" }}>
+                          {description}
+                        </p>
+
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                            gap: "12px",
+                            alignItems: "center",
+                            paddingTop: "14px",
+                            borderTop: "1px solid #e7dfd5"
+                          }}
+                        >
+                          <span style={{ color: "#d6a94f", fontWeight: 950 }}>
+                            {"🔥".repeat(demand)}
+                          </span>
+                          <strong style={{ color: "#223328" }}>
+                            ${rate} / {unit}
+                          </strong>
+                        </div>
+                      </button>
+                    );
+                  })}
                 </div>
 
-                <div className="fieldGroup">
-                  <label>Market</label>
-                  <select defaultValue="Rehoboth Beach">
-                    <option>Washington, DC</option>
-                    <option>Pittsburgh</option>
-                    <option>Rehoboth Beach</option>
-                    <option>Puerto Vallarta</option>
-                  </select>
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "1fr 1fr",
+                    gap: "14px"
+                  }}
+                >
+                  <div
+                    style={{
+                      padding: "18px",
+                      border: "1px solid #e7dfd5",
+                      borderRadius: "22px",
+                      background: "#fbfaf7"
+                    }}
+                  >
+                    <label
+                      style={{
+                        display: "block",
+                        marginBottom: "10px",
+                        color: "#655f58",
+                        fontSize: "13px",
+                        fontWeight: 950,
+                        letterSpacing: "0.1em",
+                        textTransform: "uppercase"
+                      }}
+                    >
+                      Hours per week
+                    </label>
+                    <select
+                      value={hoursPerWeek}
+                      onChange={(event) => setHoursPerWeek(Number(event.target.value))}
+                      style={{
+                        width: "100%",
+                        padding: "14px",
+                        border: "1px solid #e7dfd5",
+                        borderRadius: "16px",
+                        background: "#ffffff",
+                        color: "#181512",
+                        fontWeight: 900
+                      }}
+                    >
+                      <option value={5}>5 hours / week</option>
+                      <option value={10}>10 hours / week</option>
+                      <option value={15}>15 hours / week</option>
+                      <option value={20}>20 hours / week</option>
+                    </select>
+                  </div>
+
+                  <div
+                    style={{
+                      padding: "18px",
+                      border: "1px solid #e7dfd5",
+                      borderRadius: "22px",
+                      background: "#fbfaf7"
+                    }}
+                  >
+                    <label
+                      style={{
+                        display: "block",
+                        marginBottom: "10px",
+                        color: "#655f58",
+                        fontSize: "13px",
+                        fontWeight: 950,
+                        letterSpacing: "0.1em",
+                        textTransform: "uppercase"
+                      }}
+                    >
+                      Market
+                    </label>
+                    <select
+                      defaultValue="Rehoboth Beach"
+                      style={{
+                        width: "100%",
+                        padding: "14px",
+                        border: "1px solid #e7dfd5",
+                        borderRadius: "16px",
+                        background: "#ffffff",
+                        color: "#181512",
+                        fontWeight: 900
+                      }}
+                    >
+                      <option>Washington, DC</option>
+                      <option>Pittsburgh</option>
+                      <option>Rehoboth Beach</option>
+                      <option>Puerto Vallarta</option>
+                    </select>
+                  </div>
                 </div>
               </div>
 
-              <div className="earningsResult">
-                <span className="kicker">Projected monthly earnings</span>
-                <h3>$1,120</h3>
-                <p>
-                  Based on part-time availability, selected skills, and expected early-market demand.
+              <div
+                style={{
+                  padding: "30px",
+                  borderRadius: "36px",
+                  color: "#fbfaf7",
+                  background:
+                    "radial-gradient(circle at 10% 0%, rgba(214, 169, 79, 0.28), transparent 35%), linear-gradient(135deg, #223328, #151c17)",
+                  boxShadow: "0 24px 80px rgba(24, 21, 18, 0.14)"
+                }}
+              >
+                <span className="kicker light">Your potential</span>
+                <h3
+                  style={{
+                    margin: "0 0 8px",
+                    color: "#fbfaf7",
+                    fontSize: "clamp(62px, 8vw, 96px)",
+                    lineHeight: 0.95,
+                    letterSpacing: "-0.07em"
+                  }}
+                >
+                  ${projectedMonthlyEarnings.toLocaleString()}
+                </h3>
+                <p style={{ color: "#ddd8ce", lineHeight: 1.65, marginBottom: "24px" }}>
+                  Estimated monthly earnings based on selected services, part-time availability,
+                  and your provider reputation.
                 </p>
 
-                <div className="earningBreakdown">
-                  <div>
-                    <span>Home Watch</span>
-                    <strong>$700</strong>
+                <div
+                  style={{
+                    display: "grid",
+                    gap: "10px",
+                    marginBottom: "24px"
+                  }}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      gap: "14px",
+                      padding: "14px",
+                      border: "1px solid rgba(244, 239, 230, 0.14)",
+                      borderRadius: "18px",
+                      background: "rgba(255, 255, 255, 0.08)",
+                      fontWeight: 850
+                    }}
+                  >
+                    <span>Base monthly estimate</span>
+                    <strong>${Math.round(baseMonthlyEarnings).toLocaleString()}</strong>
                   </div>
-                  <div>
-                    <span>Plant Care</span>
-                    <strong>$240</strong>
+
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      gap: "14px",
+                      padding: "14px",
+                      border: "1px solid rgba(244, 239, 230, 0.14)",
+                      borderRadius: "18px",
+                      background: "rgba(255, 255, 255, 0.08)",
+                      fontWeight: 850
+                    }}
+                  >
+                    <span>Estimated tips</span>
+                    <strong>+${estimatedTips.toLocaleString()}</strong>
                   </div>
-                  <div>
-                    <span>Trash Service</span>
-                    <strong>$180</strong>
+
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      gap: "14px",
+                      padding: "14px",
+                      border: "1px solid rgba(244, 239, 230, 0.14)",
+                      borderRadius: "18px",
+                      background: "rgba(255, 255, 255, 0.08)",
+                      fontWeight: 850
+                    }}
+                  >
+                    <span>Repeat-customer upside</span>
+                    <strong>+${estimatedRepeatBoost.toLocaleString()}</strong>
                   </div>
                 </div>
 
-                <div className="reviewBoost">
-                  <h4>Reviews and tips can increase earnings</h4>
-                  <p>
-                    Reliable providers with strong reviews, repeat customers, and high completion rates
-                    should receive more opportunities over time.
+                <div
+                  style={{
+                    marginBottom: "24px",
+                    padding: "18px",
+                    borderRadius: "22px",
+                    background: "rgba(255, 255, 255, 0.08)"
+                  }}
+                >
+                  <h4 style={{ margin: "0 0 12px", color: "#f6dfaa", fontSize: "20px" }}>
+                    Review influence
+                  </h4>
+
+                  <div
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: "repeat(5, 1fr)",
+                      gap: "8px",
+                      marginBottom: "14px"
+                    }}
+                  >
+                    {[1, 2, 3, 4, 5].map((score) => (
+                      <button
+                        type="button"
+                        key={score}
+                        onClick={() => setReputation(score)}
+                        style={{
+                          padding: "10px 0",
+                          border: reputation === score ? "2px solid #f6dfaa" : "1px solid rgba(244, 239, 230, 0.18)",
+                          borderRadius: "14px",
+                          background: reputation === score ? "rgba(246, 223, 170, 0.14)" : "rgba(255,255,255,0.06)",
+                          color: "#f6dfaa",
+                          cursor: "pointer",
+                          fontSize: "18px",
+                          fontWeight: 950
+                        }}
+                      >
+                        ★
+                      </button>
+                    ))}
+                  </div>
+
+                  <div style={{ color: "#fbfaf7", fontWeight: 950 }}>
+                    {reputationModel.label}
+                  </div>
+                  <p style={{ margin: "6px 0 0", color: "#ddd8ce", fontSize: "15px", lineHeight: 1.55 }}>
+                    Better reviews should lead to more requests, repeat members, stronger tips,
+                    and higher earning potential.
                   </p>
+                </div>
+
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "1fr 1fr",
+                    gap: "10px",
+                    marginBottom: "24px"
+                  }}
+                >
+                  <div
+                    style={{
+                      padding: "16px",
+                      borderRadius: "20px",
+                      background: "rgba(255,255,255,0.08)"
+                    }}
+                  >
+                    <div style={{ color: "#f6dfaa", fontWeight: 950, fontSize: "13px", textTransform: "uppercase", letterSpacing: "0.12em" }}>
+                      Strong reviews
+                    </div>
+                    <strong style={{ display: "block", marginTop: "8px", fontSize: "24px" }}>
+                      ${projectedMonthlyEarnings.toLocaleString()}
+                    </strong>
+                  </div>
+
+                  <div
+                    style={{
+                      padding: "16px",
+                      borderRadius: "20px",
+                      background: "rgba(255,255,255,0.08)"
+                    }}
+                  >
+                    <div style={{ color: "#f6dfaa", fontWeight: 950, fontSize: "13px", textTransform: "uppercase", letterSpacing: "0.12em" }}>
+                      Top providers
+                    </div>
+                    <strong style={{ display: "block", marginTop: "8px", fontSize: "24px" }}>
+                      ${topProviderPotential.toLocaleString()}+
+                    </strong>
+                  </div>
                 </div>
 
                 <a className="btn primary full" href="#contact">
