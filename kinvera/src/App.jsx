@@ -15,6 +15,7 @@ import {
   Paintbrush,
   ShieldCheck,
   Sparkles,
+  Star,
   Thermometer,
   Trash2,
   UserCheck,
@@ -81,6 +82,45 @@ const futureServices = [
   { icon: Car, title: "Car Care" },
   { icon: Paintbrush, title: "Interior Refresh" },
   { icon: Wrench, title: "Contractor Access" }
+];
+
+const providerSkills = [
+  {
+    skill: "Home Watch",
+    demand: "High",
+    pay: "$25–$45 / visit",
+    upside: "Strong repeat demand from travelers and second-home owners."
+  },
+  {
+    skill: "Cleaning",
+    demand: "High",
+    pay: "$25–$40 / hour",
+    upside: "Higher tips and repeat bookings when reviews are strong."
+  },
+  {
+    skill: "Plant Care",
+    demand: "Medium",
+    pay: "$15–$30 / visit",
+    upside: "Great add-on service for customers already booking home checks."
+  },
+  {
+    skill: "Trash & Recycling",
+    demand: "Medium",
+    pay: "$10–$25 / task",
+    upside: "Simple recurring work with strong neighborhood density potential."
+  },
+  {
+    skill: "Tech Support",
+    demand: "Future",
+    pay: "$35–$75 / visit",
+    upside: "Premium add-on for smart locks, Wi‑Fi, cameras, and home devices."
+  },
+  {
+    skill: "Car Care",
+    demand: "Future",
+    pay: "$40–$100 / service",
+    upside: "Strong concierge add-on for busy homeowners and vacation homes."
+  }
 ];
 
 const markets = [
@@ -167,6 +207,7 @@ function App() {
           <a href="#homeowners">Homeowners & Renters</a>
           <a href="#services">Services</a>
           <a href="#security">Security</a>
+          <a href="#skills">Skills & Pay</a>
           <a href="#providers">Care Providers</a>
         </nav>
 
@@ -183,19 +224,19 @@ function App() {
                 Trusted home care for homeowners, renters, and travelers
               </div>
 
-              <h1>Know your home is handled.</h1>
+              <h1>Join the Kinvera Network.</h1>
 
               <p>
-                Kinvera gives homeowners and renters a trusted way to book home watch,
-                cleaning, plant care, trash support, secure access, and documented visit reports.
+                Kinvera connects homeowners, renters, and local care providers through
+                trusted service, secure access, documented visits, and peace of mind.
               </p>
 
               <div className="heroActions">
-                <a className="btn primary" href="#contact">
-                  Request Home Care <ArrowRight size={18} />
+                <a className="btn primary" href="#network">
+                  Choose Your Path <ArrowRight size={18} />
                 </a>
-                <a className="btn secondary" href="#contact">
-                  Join as a Customer
+                <a className="btn secondary" href="#how">
+                  How It Works
                 </a>
               </div>
 
@@ -206,7 +247,7 @@ function App() {
                 </div>
                 <div>
                   <strong>Vetted</strong>
-                  <span>Care providers</span>
+                  <span>Members & providers</span>
                 </div>
                 <div>
                   <strong>Photo</strong>
@@ -268,17 +309,69 @@ function App() {
           </div>
         </section>
 
+        <section id="network" className="section">
+          <div className="container">
+            <div className="sectionHead center">
+              <span className="kicker">Choose your path</span>
+              <h2>One network. Two ways to join.</h2>
+              <p>
+                Kinvera works because both sides of the network are built around trust:
+                customers who need reliable home care and providers who want to deliver it.
+              </p>
+            </div>
+
+            <div className="packageGrid">
+              <article className="packageCard featured">
+                <div className="badge">For homeowners & renters</div>
+                <span className="packageEyebrow">I need help with my home</span>
+                <h3>Join as a Home Member</h3>
+                <p>
+                  For homeowners, renters, travelers, and second-home owners who want
+                  trusted help and documented peace of mind.
+                </p>
+                <ul>
+                  <li><CheckCircle2 size={18} /> Home watch visits</li>
+                  <li><CheckCircle2 size={18} /> Cleaning and turnover support</li>
+                  <li><CheckCircle2 size={18} /> Plant care, mail, and trash support</li>
+                  <li><CheckCircle2 size={18} /> Secure access and photo reports</li>
+                </ul>
+                <a className="btn primary full" href="#contact">
+                  Join as a Home Member
+                </a>
+              </article>
+
+              <article className="packageCard">
+                <span className="packageEyebrow">I want to provide care</span>
+                <h3>Join as a Care Provider</h3>
+                <p>
+                  For cleaners, home watchers, organizers, plant specialists, and
+                  service professionals who want consistent work through Kinvera.
+                </p>
+                <ul>
+                  <li><CheckCircle2 size={18} /> Join a trusted local network</li>
+                  <li><CheckCircle2 size={18} /> Get matched with customer requests</li>
+                  <li><CheckCircle2 size={18} /> Follow clear service standards</li>
+                  <li><CheckCircle2 size={18} /> Build reputation over time</li>
+                </ul>
+                <a className="btn secondary full" href="#providers">
+                  Become a Care Provider
+                </a>
+              </article>
+            </div>
+          </div>
+        </section>
+
         <section id="homeowners" className="statement">
           <div className="container statementGrid">
             <div>
               <span className="kicker">For homeowners and renters</span>
-              <h2>One simple place to request trusted help for your home.</h2>
+              <h2>Home Members get a clearer way to care for their space.</h2>
             </div>
             <p>
               Kinvera is built for people who want their home cared for without chasing
               different vendors, texting neighbors, or wondering whether something was done.
-              Whether you own, rent, travel often, or manage a second home, Kinvera gives you
-              a clearer way to get help and receive proof that the work was completed.
+              Whether you own, rent, travel often, or manage a second home, the network gives
+              you a trusted way to request help and receive proof that the work was completed.
             </p>
           </div>
         </section>
@@ -441,6 +534,47 @@ function App() {
           </div>
         </section>
 
+        <section id="skills" className="section">
+          <div className="container">
+            <div className="sectionHead center">
+              <span className="kicker">Provider skills marketplace</span>
+              <h2>What skills do you have?</h2>
+              <p>
+                Care Providers can join the Kinvera Network by selecting the services they are qualified to offer.
+                Over time, Kinvera can show demand, estimated pay, reviews, tips, and repeat-booking potential by skill and market.
+              </p>
+            </div>
+
+            <div className="serviceGrid">
+              {providerSkills.map((item) => (
+                <article className="serviceCard" key={item.skill}>
+                  <div className="iconBox"><Star size={25} /></div>
+                  <h3>{item.skill}</h3>
+                  <p>{item.upside}</p>
+                  <div className="securityChecklist skillStats">
+                    <div><CheckCircle2 size={19} /> Demand: {item.demand}</div>
+                    <div><CheckCircle2 size={19} /> Pay: {item.pay}</div>
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            <div className="statement miniStatement">
+              <div className="container statementGrid">
+                <div>
+                  <span className="kicker">How earning grows</span>
+                  <h2>Better reviews should unlock better opportunities.</h2>
+                </div>
+                <p>
+                  Kinvera can rank providers by reliability, customer reviews, completed visits, response time,
+                  and tips. The goal is simple: great providers should earn more, receive more requests,
+                  and build a trusted local reputation inside the network.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section id="providers" className="section providers">
           <div className="container providerGrid">
             <div>
@@ -449,10 +583,10 @@ function App() {
               <p>
                 Kinvera is for cleaners, home watchers, organizers, plant specialists,
                 concierge providers, and property care professionals who want consistent work,
-                clear expectations, and a trusted brand behind them.
+                clear expectations, visible demand, review-driven reputation, and a trusted brand behind them.
               </p>
               <a className="btn primary" href="#contact">
-                Work With Kinvera <ChevronRight size={18} />
+                Become a Care Provider <ChevronRight size={18} />
               </a>
             </div>
 
@@ -478,12 +612,12 @@ function App() {
         <section id="contact" className="section contact">
           <div className="container contactCard">
             <div>
-              <span className="kicker light">Get started</span>
-              <h2>Tell us what you need help with.</h2>
+              <span className="kicker light">Join the network</span>
+              <h2>Tell us which side of Kinvera you are joining.</h2>
               <p>
-                Join the Kinvera network as a customer to request trusted home care,
-                or apply to work with Kinvera as a care provider. Early customers and providers
-                will help shape packages, pricing, training, and the future Kinvera app.
+                Home Members join to request trusted care for their property.
+                Care Providers join to deliver that care through Kinvera.
+                Both sides help shape the future network.
               </p>
             </div>
 
@@ -493,8 +627,8 @@ function App() {
               <label>
                 I am interested in
                 <select name="interest" defaultValue="home">
-                  <option value="home">Joining as a customer</option>
-                  <option value="provider">Working with Kinvera as a care provider</option>
+                  <option value="home">Joining as a Home Member</option>
+                  <option value="provider">Joining as a Care Provider</option>
                   <option value="both">Both</option>
                 </select>
               </label>
@@ -528,7 +662,7 @@ function App() {
               </label>
 
               <button className="btn formBtn full" type="submit">
-                Submit request
+                Join the Kinvera Network
               </button>
             </form>
           </div>
