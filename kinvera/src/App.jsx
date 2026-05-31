@@ -1,7 +1,6 @@
 import {
   ArrowRight,
   BadgeCheck,
-  BriefcaseBusiness,
   Camera,
   Car,
   CheckCircle2,
@@ -20,7 +19,6 @@ import {
   Thermometer,
   Trash2,
   UserCheck,
-  Users,
   Wifi,
   Wrench
 } from "lucide-react";
@@ -159,10 +157,10 @@ function App() {
         </a>
 
         <nav className="nav" aria-label="Main navigation">
-          <a href="#homeowners">For Homeowners</a>
+          <a href="#homeowners">Homeowners</a>
           <a href="#security">Security</a>
           <a href="#services">Services</a>
-          <a href="#providers">For Providers</a>
+          <a href="#providers">Providers</a>
         </nav>
 
         <a className="headerCta" href="#contact">Request Access</a>
@@ -178,7 +176,7 @@ function App() {
                 Trusted home care in DC, Pittsburgh, Rehoboth & Puerto Vallarta
               </div>
 
-              <h1>Never wonder what’s happening at home again.</h1>
+              <h1>Never wonder what&apos;s happening at home again.</h1>
 
               <p>
                 Kinvera gives homeowners a trusted second set of hands for home watch,
@@ -446,7 +444,7 @@ function App() {
           <div className="container contactCard">
             <div>
               <span className="kicker light">Early access</span>
-              <h2>Help shape Kinvera’s first launch.</h2>
+              <h2>Help shape Kinvera&apos;s first launch.</h2>
               <p>
                 Start with one home, one service, and one trusted visit. Early customers and care providers
                 will help shape packages, pricing, training, and the future Kinvera app.
