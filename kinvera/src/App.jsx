@@ -1,7 +1,6 @@
 import {
   ArrowRight,
   Camera,
-  Car,
   CheckCircle2,
   ChevronRight,
   Clock,
@@ -79,7 +78,6 @@ const services = [
 
 const futureServices = [
   { icon: Wifi, title: "Tech Support" },
-  { icon: Car, title: "Car Care" },
   { icon: Paintbrush, title: "Interior Refresh" },
   { icon: Wrench, title: "Contractor Access" }
 ];
@@ -88,7 +86,7 @@ const providerSkills = [
   {
     skill: "Home Watch",
     demand: "High",
-    pay: "$25–$45 / visit",
+    pay: "$25–$50 / visit",
     upside: "Strong repeat demand from travelers and second-home owners."
   },
   {
@@ -100,26 +98,26 @@ const providerSkills = [
   {
     skill: "Plant Care",
     demand: "Medium",
-    pay: "$15–$30 / visit",
+    pay: "$15–$35 / visit",
     upside: "Great add-on service for customers already booking home checks."
   },
   {
     skill: "Trash & Recycling",
-    demand: "Medium",
+    demand: "High",
     pay: "$10–$25 / task",
     upside: "Simple recurring work with strong neighborhood density potential."
   },
   {
-    skill: "Tech Support",
+    skill: "Pet Visits",
     demand: "Future",
-    pay: "$35–$75 / visit",
-    upside: "Premium add-on for smart locks, Wi‑Fi, cameras, and home devices."
+    pay: "$20–$60 / visit",
+    upside: "Natural add-on for members who travel frequently."
   },
   {
-    skill: "Car Care",
+    skill: "Package Management",
     demand: "Future",
-    pay: "$40–$100 / service",
-    upside: "Strong concierge add-on for busy homeowners and vacation homes."
+    pay: "$10–$25 / visit",
+    upside: "Useful recurring support for apartments, condos, and second homes."
   }
 ];
 
@@ -204,14 +202,14 @@ function App() {
         </a>
 
         <nav className="nav" aria-label="Main navigation">
-          <a href="#homeowners">Homeowners & Renters</a>
+          <a href="#network">Join Network</a>
           <a href="#services">Services</a>
           <a href="#security">Security</a>
-          <a href="#skills">Skills & Pay</a>
-          <a href="#providers">Care Providers</a>
+          <a href="#earnings">Ways to Earn</a>
+          <a href="#providers">Providers</a>
         </nav>
 
-        <a className="headerCta" href="#contact">Get Started</a>
+        <a className="headerCta" href="#contact">Join the Network</a>
       </header>
 
       <main id="top">
@@ -221,7 +219,7 @@ function App() {
             <div className="heroCopy">
               <div className="pill">
                 <ShieldCheck size={16} />
-                Trusted home care for homeowners, renters, and travelers
+                Trusted home care for homeowners, renters, and providers
               </div>
 
               <h1>Join the Kinvera Network.</h1>
@@ -246,8 +244,8 @@ function App() {
                   <span>Launch markets</span>
                 </div>
                 <div>
-                  <strong>Vetted</strong>
-                  <span>Members & providers</span>
+                  <strong>Members</strong>
+                  <span>& providers</span>
                 </div>
                 <div>
                   <strong>Photo</strong>
@@ -260,22 +258,118 @@ function App() {
               <div className="visitCard">
                 <div className="visitHeader">
                   <div>
-                    <span>Visit report</span>
-                    <h2>Rehoboth Home Check</h2>
+                    <span>Kinvera Report</span>
+                    <h2>Property Check Complete</h2>
+                    <p style={{ margin: "10px 0 0", color: "#c9d3c8", fontWeight: 700 }}>
+                      Rehoboth Beach, DE • May 28, 2026 • 11:42 AM
+                    </p>
                   </div>
-                  <Camera size={28} />
+                  <div
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "8px",
+                      padding: "11px 15px",
+                      borderRadius: "999px",
+                      background: "#f4efe6",
+                      color: "#223328",
+                      fontWeight: 900,
+                      whiteSpace: "nowrap"
+                    }}
+                  >
+                    <CheckCircle2 size={18} />
+                    Visit Complete
+                  </div>
                 </div>
 
-                <div className="scene">
-                  <div className="moon" />
-                  <div className="house">
-                    <div className="roof" />
-                    <div className="body" />
-                    <div className="door" />
-                    <div className="window w1" />
-                    <div className="window w2" />
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "1fr 1fr",
+                    gap: "14px",
+                    padding: "24px 24px 16px"
+                  }}
+                >
+                  <div
+                    style={{
+                      minHeight: "190px",
+                      borderRadius: "28px",
+                      overflow: "hidden",
+                      background:
+                        "linear-gradient(135deg, rgba(34,51,40,0.82), rgba(34,51,40,0.22)), linear-gradient(160deg, #d9c9ae 0%, #f6efe2 48%, #4a392d 49%, #2d241f 56%, #efe6d6 57%)",
+                      position: "relative",
+                      border: "1px solid #e7dfd5"
+                    }}
+                  >
+                    <div
+                      style={{
+                        position: "absolute",
+                        left: "16px",
+                        top: "16px",
+                        padding: "8px 10px",
+                        borderRadius: "999px",
+                        background: "rgba(255,255,255,0.86)",
+                        color: "#223328",
+                        fontSize: "13px",
+                        fontWeight: 900
+                      }}
+                    >
+                      Front Door Photo
+                    </div>
+                    <div
+                      style={{
+                        position: "absolute",
+                        left: "38%",
+                        bottom: "0",
+                        width: "54px",
+                        height: "84px",
+                        borderRadius: "14px 14px 0 0",
+                        background: "#223328"
+                      }}
+                    />
                   </div>
-                  <div className="walkway" />
+
+                  <div
+                    style={{
+                      minHeight: "190px",
+                      borderRadius: "28px",
+                      overflow: "hidden",
+                      background:
+                        "radial-gradient(circle at 50% 42%, #ffffff 0%, #ffffff 22%, #ece7dd 23%, #ece7dd 45%, #d9d0c2 46%, #bfb3a3 100%)",
+                      position: "relative",
+                      border: "1px solid #e7dfd5"
+                    }}
+                  >
+                    <div
+                      style={{
+                        position: "absolute",
+                        left: "16px",
+                        top: "16px",
+                        padding: "8px 10px",
+                        borderRadius: "999px",
+                        background: "rgba(255,255,255,0.9)",
+                        color: "#223328",
+                        fontSize: "13px",
+                        fontWeight: 900
+                      }}
+                    >
+                      Thermostat Photo
+                    </div>
+                    <div
+                      style={{
+                        position: "absolute",
+                        inset: "0",
+                        display: "grid",
+                        placeItems: "center",
+                        color: "#223328",
+                        fontSize: "46px",
+                        fontWeight: 950,
+                        letterSpacing: "-0.06em"
+                      }}
+                    >
+                      72°
+                    </div>
+                  </div>
                 </div>
 
                 <div className="visitStats">
@@ -283,19 +377,50 @@ function App() {
                   <div><Thermometer size={16} /> 72° inside</div>
                 </div>
 
+                <div className="visitStats">
+                  <div><Camera size={16} /> 8 photos uploaded</div>
+                  <div><LockKeyhole size={16} /> Access logged</div>
+                </div>
+
                 <div className="checkList">
                   {[
                     "Front door secured",
-                    "No visible leaks",
                     "Mail collected",
                     "Plants watered",
-                    "Photos uploaded"
+                    "No visible leaks",
+                    "Owner notified"
                   ].map((item) => (
                     <div className="check" key={item}>
                       <CheckCircle2 size={19} />
                       <span>{item}</span>
                     </div>
                   ))}
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    gap: "16px",
+                    margin: "0 24px 24px",
+                    padding: "16px",
+                    border: "1px solid #eee8de",
+                    borderRadius: "22px",
+                    background: "#fbfaf7"
+                  }}
+                >
+                  <div>
+                    <div style={{ color: "#91877d", fontSize: "13px", fontWeight: 900, textTransform: "uppercase", letterSpacing: "0.12em" }}>
+                      Completed by
+                    </div>
+                    <div style={{ marginTop: "4px", fontWeight: 950, fontSize: "18px" }}>
+                      Sarah M. • Kinvera Verified Provider
+                    </div>
+                  </div>
+                  <div style={{ color: "#d6a94f", fontWeight: 950, whiteSpace: "nowrap" }}>
+                    ★★★★★ 4.9
+                  </div>
                 </div>
               </div>
 
@@ -514,6 +639,126 @@ function App() {
           </div>
         </section>
 
+        <section id="earnings" className="section earnings">
+          <div className="container">
+            <div className="sectionHead center">
+              <span className="kicker">Ways to earn</span>
+              <h2>See what you could earn with Kinvera.</h2>
+              <p>
+                Care Providers can select the skills they offer, understand demand by service,
+                and see how part-time availability could turn into meaningful monthly income.
+              </p>
+            </div>
+
+            <div className="earningsGrid">
+              <div className="earningsPanel">
+                <h3>What skills do you have?</h3>
+
+                <div className="skillList">
+                  <label>
+                    <input type="checkbox" defaultChecked />
+                    <span>Home Watch</span>
+                    <strong>$35 avg / visit</strong>
+                  </label>
+
+                  <label>
+                    <input type="checkbox" defaultChecked />
+                    <span>Plant Care</span>
+                    <strong>$20 avg / visit</strong>
+                  </label>
+
+                  <label>
+                    <input type="checkbox" />
+                    <span>Cleaning</span>
+                    <strong>$120 avg / job</strong>
+                  </label>
+
+                  <label>
+                    <input type="checkbox" defaultChecked />
+                    <span>Trash Service</span>
+                    <strong>$15 avg / task</strong>
+                  </label>
+
+                  <label>
+                    <input type="checkbox" />
+                    <span>Pet Visits</span>
+                    <strong>$25 avg / visit</strong>
+                  </label>
+                </div>
+
+                <div className="fieldGroup">
+                  <label>Hours available per week</label>
+                  <select defaultValue="10">
+                    <option value="5">5 hours / week</option>
+                    <option value="10">10 hours / week</option>
+                    <option value="15">15 hours / week</option>
+                    <option value="20">20 hours / week</option>
+                  </select>
+                </div>
+
+                <div className="fieldGroup">
+                  <label>Market</label>
+                  <select defaultValue="Rehoboth Beach">
+                    <option>Washington, DC</option>
+                    <option>Pittsburgh</option>
+                    <option>Rehoboth Beach</option>
+                    <option>Puerto Vallarta</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="earningsResult">
+                <span className="kicker">Projected monthly earnings</span>
+                <h3>$1,120</h3>
+                <p>
+                  Based on part-time availability, selected skills, and expected early-market demand.
+                </p>
+
+                <div className="earningBreakdown">
+                  <div>
+                    <span>Home Watch</span>
+                    <strong>$700</strong>
+                  </div>
+                  <div>
+                    <span>Plant Care</span>
+                    <strong>$240</strong>
+                  </div>
+                  <div>
+                    <span>Trash Service</span>
+                    <strong>$180</strong>
+                  </div>
+                </div>
+
+                <div className="reviewBoost">
+                  <h4>Reviews and tips can increase earnings</h4>
+                  <p>
+                    Reliable providers with strong reviews, repeat customers, and high completion rates
+                    should receive more opportunities over time.
+                  </p>
+                </div>
+
+                <a className="btn primary full" href="#contact">
+                  Apply to Join Kinvera
+                </a>
+              </div>
+            </div>
+
+            <div className="serviceGrid" style={{ marginTop: "28px" }}>
+              {providerSkills.map((item) => (
+                <article className="serviceCard" key={item.skill}>
+                  <div className="iconBox"><Star size={25} /></div>
+                  <h3>{item.skill}</h3>
+                  <p>{item.upside}</p>
+                  <div className="securityChecklist skillStats">
+                    <div><CheckCircle2 size={19} /> Demand: {item.demand}</div>
+                    <div><CheckCircle2 size={19} /> Pay: {item.pay}</div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section id="locations" className="section locations">
           <div className="container">
             <div className="sectionHead">
@@ -530,47 +775,6 @@ function App() {
                   <p>{market.text}</p>
                 </article>
               ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="skills" className="section">
-          <div className="container">
-            <div className="sectionHead center">
-              <span className="kicker">Provider skills marketplace</span>
-              <h2>What skills do you have?</h2>
-              <p>
-                Care Providers can join the Kinvera Network by selecting the services they are qualified to offer.
-                Over time, Kinvera can show demand, estimated pay, reviews, tips, and repeat-booking potential by skill and market.
-              </p>
-            </div>
-
-            <div className="serviceGrid">
-              {providerSkills.map((item) => (
-                <article className="serviceCard" key={item.skill}>
-                  <div className="iconBox"><Star size={25} /></div>
-                  <h3>{item.skill}</h3>
-                  <p>{item.upside}</p>
-                  <div className="securityChecklist skillStats">
-                    <div><CheckCircle2 size={19} /> Demand: {item.demand}</div>
-                    <div><CheckCircle2 size={19} /> Pay: {item.pay}</div>
-                  </div>
-                </article>
-              ))}
-            </div>
-
-            <div className="statement miniStatement">
-              <div className="container statementGrid">
-                <div>
-                  <span className="kicker">How earning grows</span>
-                  <h2>Better reviews should unlock better opportunities.</h2>
-                </div>
-                <p>
-                  Kinvera can rank providers by reliability, customer reviews, completed visits, response time,
-                  and tips. The goal is simple: great providers should earn more, receive more requests,
-                  and build a trusted local reputation inside the network.
-                </p>
-              </div>
             </div>
           </div>
         </section>
